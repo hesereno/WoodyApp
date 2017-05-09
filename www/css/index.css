@@ -8,6 +8,12 @@
 .ttl-login{
     color:rgba(255, 235, 157, 1) !important;
     text-align: center !important;
+    font-size: 5rem;
+}
+
+.txt-login{
+    color:rgba(255, 235, 157, 1) !important;
+    text-align: center !important;
 }
 
 .input-login{

@@ -17,9 +17,9 @@ app.controller('AppController', ['$scope', '$http', function($scope, $http){
          $http.get('http://woodyappdev.000webhostapp.com/test.php').
               then(function(response) {
                   var test = response.data;
-                  console.log(test.password)
-                  console.log(test.test)
-                  console.log(test.username)
+                  console.log(test.password);
+                  console.log(test.test);
+                  console.log(test.username);
                   console.log(test.type)
 
               });

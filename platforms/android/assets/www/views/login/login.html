@@ -1,3 +1,12 @@
-<div ng-app="woodyApp" ng-controller="LoginController">
-    <h1>{{test}}</h1>
+<div  ng-app="woodyApp" ng-controller="LoginController">
+    <div class="col-xs-offset-1 col-xs-10">
+        <form name="loginForm" method="post">
+            <h1 class="ttl-login">{{title}}</h1><br>
+            <input type="text" class="form-control input-login" id="username" placeholder="Username" aria-describedby="basic-addon1"><br>
+            <input type="password" id="password" class="form-control input-login" placeholder="Password" aria-describedby="basic-addon1"><br>
+            <a class="txt-login" href="#">Has olvidado la contraseña?</a><br>
+            <button type="submit" ng-click="checkLogin()" class="col-xs-offset-2 col-xs-8 col-sm-12 btn btn-warning btn-lg btn-login">ENTRA</button><br>
+            <a class="txt-login" href="#">Has olvidado la contraseña?</a><br>
+        </form>
+    </div>
 </div>

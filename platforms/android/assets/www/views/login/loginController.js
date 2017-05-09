@@ -3,6 +3,6 @@ var app = angular.module('woodyApp.login', []);
 
 app.controller('LoginController', ['$scope', function($scope){
 
-    $scope.test = "woodyApp"
+    $scope.title = "Woody"
 
 }]);

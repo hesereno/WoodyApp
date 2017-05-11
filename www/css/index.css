@@ -3,13 +3,11 @@
         font-size: 4.5em !important;
     }
 }
-/* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991px) {
     .ttl-login{
         font-size: 4.5em !important;
     }
 }
-/* tablets/desktops and up ----------- */
 @media (min-width: 992px) and (max-width: 1199px) {
     .ttl-login{
         font-size: 5em !important;
@@ -44,6 +42,7 @@
     color:rgba(255, 235, 157, 1) !important;
     text-align: center !important;
     font-size: 1.1em !important;
+    padding-top: 0.5em;
 }
 
 .form-control{
@@ -82,3 +81,28 @@
 .bottom-div{
     padding: 1em 0 1em 0;
 }
+
+/* Login */
+
+/* Register*/
+.row-centro{
+    height:70%;
+}
+
+.decoradoTop{
+    background-color:rgba(255, 235, 157, 1) !important;
+    height: 15%;
+    -webkit-clip-path: ellipse(60% 75% at 50% 20%);
+}
+
+.decoradoBottom{
+    background-color:rgba(255, 235, 157, 1) !important;
+    height: 15%;
+    -webkit-clip-path: ellipse(60% 75% at 50% 80%);
+}
+
+.form{
+    height: 70%;
+}
+
+/* Register*/

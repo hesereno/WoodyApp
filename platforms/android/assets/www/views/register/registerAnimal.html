@@ -1,0 +1,29 @@
+<div  ng-app="woodyApp" ng-controller="RegisterAnimalController">
+    <div ng-app="woodyApp" ng-controller="registerUserController">
+        <div class="row decoradoTop">
+        </div>
+        <div class="row row-centro">
+            <form class="col-xs-offset-1 col-sm-offset-1 col-xs-10 col-sm-10" name="loginForm" method="post">
+                <div class="row">
+                    <span>Nombre de tu mascota</span>
+                    <input type="text" id="mascota" class="form-control input-login" placeholder="Username" aria-describedby="basic-addon1">
+                </div>
+                <div class="row">
+                    <span>Fecha de nacimiento</span>
+                    <md-datepicker ng-model="" md-placeholder="Enter Date"></md-datepicker>
+                <!--input type="password" id="password" class="form-control bootstrap-datepicker" aria-describedby="basic-addon1"-->
+                </div>
+                <div class="row">
+                    <span>Confirma tu contraseña</span>
+                    <input type="password" id="checkpassword" class="form-control input-login" placeholder="Confirm Password" aria-describedby="basic-addon1">
+                </div>
+                <div class="row">
+                    <button type="submit" ng-click="checkLogin()"
+                            class="col-xs-offset-9 col-xs-2 col-sm-offset-9 col-sm-2 btn btn-lg" >&gt;</button><br>
+                </div>
+            </form>
+        </div>
+        <div class="row decoradobottom">
+        </div>
+    </div>
+</div>

@@ -16,10 +16,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: "/registerUser",
             templateUrl: "./views/register/registerUser.html"
         })
-        .state('registroAnimal', {
-            url: "/registroAnimal",
-            templateUrl: "./views/register/registerAnimal.html"
-        })
 });
 
 app.controller('AppController', ['$scope', '$http', function($scope, $http){

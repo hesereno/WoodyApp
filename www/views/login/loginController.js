@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 var app = angular.module('woodyApp.login', []);
 
 app.controller('LoginController', ['$scope', '$http', function($scope, $http){
@@ -6,6 +6,7 @@ app.controller('LoginController', ['$scope', '$http', function($scope, $http){
     $scope.title = "Woody";
 
     $scope.checkLogin = function(){
+        console.log("entra");
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
         console.log(username + " " + password);
@@ -17,7 +18,7 @@ app.controller('LoginController', ['$scope', '$http', function($scope, $http){
             console.log(result.username);
 
             if(result){
-                console.log(password === result.password)
+                console.log(password === result.password);
                 if(password === result.password){
                     alert("Authentication succeed");
                 }else{

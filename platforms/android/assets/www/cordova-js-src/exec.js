@@ -130,7 +130,7 @@ function pollOnceFromOnlineEvent() {
 
 function pollOnce(opt_fromOnlineEvent) {
     if (bridgeSecret < 0) {
-        // This can happen when the NativeToJsMessageQueue resets the online state on page transitions.
+        // This can happen when the NativeToJsMessageQueue resets the online registro on page transitions.
         // We know there's nothing to retrieve, so no need to poll.
         return;
     }

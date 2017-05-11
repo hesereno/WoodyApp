@@ -1,25 +1,100 @@
 /* Login */
-.btn-login {
+@media screen and (max-width: 767px) {
+    .ttl-login{
+        font-size: 4.5em !important;
+    }
+}
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .ttl-login{
+        font-size: 4.5em !important;
+    }
+}
+/* tablets/desktops and up ----------- */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .ttl-login{
+        font-size: 5em !important;
+    }
+}
+
+.btn {
     color: #FFFFFF !important;
     background-color:rgba(255, 235, 157, 1) !important;
-    alignment: center;
+    border-color: rgba(255, 235, 157, 1) !important;
+    alignment: center; !important;
+}
+
+.btn:focus{
+    outline: none !important;
+}
+
+.btn:active {
+    background-color: #F5E295 !important;
 }
 
 .ttl-login{
     color:rgba(255, 235, 157, 1) !important;
     text-align: center !important;
     font-size: 5rem;
+    margin: 0;
 }
 
 .txt-login{
     color:rgba(255, 235, 157, 1) !important;
     text-align: center !important;
+    font-size: 1.1em !important;
 }
 
-.input-login{
+.form-control{
     background-color:rgba(255, 235, 157, 0.5) !important;
-    border-color: rgba(255, 235, 157, 1);
-
+    border-color: rgba(255, 235, 157, 1) !important;
     text-align: left !important;
     color: rgba(0,0,0,1) !important;
 }
+
+
+.form-control:focus{
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255, 235, 157, 1) !important;
+}
+
+.img-login{
+    height: 4em;
+    width: 4em;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100%;
+}
+
+.top-div{
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.center-div{
+    padding: 1em 0 1em 0;
+}
+
+.bottom-div{
+    padding: 1em 0 1em 0;
+}
+/* Login */
+
+/* Register*/
+.decoradoTop{
+    background-color:rgba(255, 235, 157, 1) !important;
+    height: 15%;
+    -webkit-clip-path: ellipse(60% 75% at 50% 20%);
+}
+
+.decoradoBottom{
+    background-color:rgba(255, 235, 157, 1) !important;
+    height: 15%;
+    -webkit-clip-path: ellipse(60% 75% at 50% 80%);
+}
+
+.form{
+    height: 70%;
+}
+
+/* Register*/

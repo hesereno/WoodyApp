@@ -9,6 +9,9 @@
     "installed_plugins": {
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.app.woody"
+        },
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "com.app.woody"
         }
     },
     "dependent_plugins": {}

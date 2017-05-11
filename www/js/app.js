@@ -1,7 +1,8 @@
 'use strict'
 var app = angular.module('woodyApp', [
     'ui.router',
-    'woodyApp.login'
+    'woodyApp.login',
+    'woodyApp.registerAnimal'
 ]);
 app.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("login");
@@ -9,6 +10,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('login', {
             url: "/login",
             templateUrl: "./views/login/login.html"
+        })
+        .state('registroAnimal', {
+            url: "/registroAnimal",
+            templateUrl: "./views/register/registerAnimal.html"
         })
 });
 app.controller('AppController', ['$scope', '$http', function($scope, $http){

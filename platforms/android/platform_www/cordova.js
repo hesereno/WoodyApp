@@ -644,7 +644,7 @@ var utils = require('cordova/utils'),
  * onResume                    User event fired to indicate a start/resume lifecycle event
  * onPause                     User event fired to indicate a pause lifecycle event
  *
- * The events marked with an * are sticky. Once they have fired, they will stay in the fired state.
+ * The events marked with an * are sticky. Once they have fired, they will stay in the fired registro.
  * All listeners that subscribe after the event is fired will be executed right away.
  *
  * The only Cordova events that user code should register for are:
@@ -657,7 +657,7 @@ var utils = require('cordova/utils'),
  *      document.addEventListener("resume", myResumeListener, false);
  *      document.addEventListener("pause", myPauseListener, false);
  *
- * The DOM lifecycle events should be used for saving and restoring state
+ * The DOM lifecycle events should be used for saving and restoring registro
  *      window.onload
  *      window.onunload
  *
@@ -1000,7 +1000,7 @@ function pollOnceFromOnlineEvent() {
 
 function pollOnce(opt_fromOnlineEvent) {
     if (bridgeSecret < 0) {
-        // This can happen when the NativeToJsMessageQueue resets the online state on page transitions.
+        // This can happen when the NativeToJsMessageQueue resets the online registro on page transitions.
         // We know there's nothing to retrieve, so no need to poll.
         return;
     }

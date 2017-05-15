@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <title>Hello World</title>
     </head>
-    <body ng-app="woodyApp" ng-controller="AppController">
+    <body ng-app="woodyApp" ng-controller="AppController" ng-init="initApp()">
         <ui-view></ui-view>
 
 
@@ -18,10 +18,13 @@
         <script src="js/angular-ui-router.min.js"></script>
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/angular-cookies.js"></script>
 
         <script src="js/app.js"></script>
         <script src="views/login/loginController.js"></script>
         <script src="views/register/registerAnimalController.js"></script>
+        <script src="views/register/registerPersonaController.js"></script>
+        <script src="views/profile/profileController.js"></script>
 
 
     </body>

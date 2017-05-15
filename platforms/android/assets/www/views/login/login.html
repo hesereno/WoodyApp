@@ -1,4 +1,4 @@
-<div  ng-app="woodyApp" ng-controller="LoginController">
+<div  ng-app="woodyApp" ng-controller="LoginController" ng-init="initView()">
     <div class="col-xs-offset-1 col-xs-10">
         <form name="loginForm" method="post">
             <div class="row align-items-start top-div">
@@ -13,7 +13,7 @@
             <div class="row align-items-end bottom-div">
                 <button type="submit" ng-click="checkLogin()"
                         class="col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8 btn btn-lg" >ENTRAR</button><br>
-                <a ui-sref="registroAnimal" class="col-xs-12 col-sm-12 txt-login" href="#">Aún no tienes cuenta?</a>
+                <a ui-sref="registroPersona" class="col-xs-12 col-sm-12 txt-login">Aún no tienes cuenta?</a>
             </div>
         </form>
     </div>

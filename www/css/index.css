@@ -53,7 +53,6 @@
     color: rgba(0,0,0,1) !important;
 }
 
-
 .form-control:focus{
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255, 235, 157, 1) !important;
 }
@@ -85,8 +84,17 @@
 /* Login */
 
 /* Register*/
+.img-reg{
+    height: 50%;
+    width: 75%;
+}
+
 .row-centro{
-    height:70%;
+    height:70% !important;
+}
+
+.row{
+    width: 100%;
 }
 
 .decoradoTop{
@@ -106,3 +114,12 @@
 }
 
 /* Register*/
+
+/* Profile */
+
+.img-profile{
+    width:50%;
+    height:50%;
+}
+
+/* Profile */

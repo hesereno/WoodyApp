@@ -2,7 +2,9 @@
 var app = angular.module('woodyApp', [
     'ui.router',
     'woodyApp.login',
-    'woodyApp.registerUser'
+    'woodyApp.registerUser',
+    'woodyApp.registerAnimal',
+    'woodyApp.perfilUsuario'
 ]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
@@ -19,6 +21,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('registroAnimal', {
             url: "/registroAnimal",
             templateUrl: "./views/register/registerAnimal.html"
+        })
+        .state('perfilUsuario', {
+            url: "/perfilUsuario",
+            templateUrl: "./views/perfilUsuario/perfilUsuario.html"
         })
 });
 

@@ -4,8 +4,22 @@ var app = angular.module('woodyApp', [
     'woodyApp.login',
     'woodyApp.registerUser',
     'woodyApp.registerAnimal',
-    'woodyApp.perfilUsuario'
+    'woodyApp.profile'
 ]);
+
+app.directive('formAnimalesRegistro', function() {
+    return {
+        restrict: 'E',
+        templateUrl: './directives/formAnimalesRegistro.html'
+    };
+});
+
+app.directive('profileDatosMascota', function(){
+    return{
+        restrict: 'E',
+        templateUrl: './directives/profileDatosMascota.html'
+    };
+});
 
 app.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("login");
@@ -18,27 +32,35 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: "/registerUser",
             templateUrl: "./views/register/registerUser.html"
         })
-        .state('registroAnimal', {
-            url: "/registroAnimal",
+        .state('registerAnimal', {
+            url: "/registerAnimal",
             templateUrl: "./views/register/registerAnimal.html"
         })
-        .state('perfilUsuario', {
-            url: "/perfilUsuario",
-            templateUrl: "./views/perfilUsuario/perfilUsuario.html"
+        .state('profile', {
+            url: "/profile",
+            templateUrl: "./views/profile/profile.html"
         })
 });
 
-app.controller('AppController', ['$scope', '$http', function($scope, $http){
+app.controller('AppController', ['$scope', '$state', function($scope, $state){
 
-     $scope.test = function(){
-         $http.get('http://woodyappdev.000webhostapp.com/test.php').
-              then(function(response) {
-                  var test = response.data;
-                  console.log(test.password);
-                  console.log(test.test);
-                  console.log(test.username);
-                  console.log(test.type)
+    /*$scope.test = function(){
+     $http.get('http://woodyappdev.000webhostapp.com/test.php').
+     then(function(response) {
+     var test = response.data;
+     console.log(test.password);
+     console.log(test.test);
+     console.log(test.username);
+     console.log(test.type)
+     });
+     }*/
 
-              });
-     }
+    $scope.initApp = function(){
+        if(localStorage.getItem('usr') != null){
+            $state.go('profile');
+        }else{
+            $state.go('login');
+        }
+    }
+
 }]);

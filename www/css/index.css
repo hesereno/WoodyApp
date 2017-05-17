@@ -84,11 +84,6 @@
 /* Login */
 
 /* Register*/
-.img-reg{
-    height: 50%;
-    width: 75%;
-}
-
 .row-centro{
     height:70% !important;
 }
@@ -118,8 +113,43 @@
 /* Profile */
 
 .img-profile{
-    width:50%;
-    height:50%;
+    padding:0 !important;
+}
+
+.btn-danger{
+    background-color:#d9534f !important;
+    border-color: #d43f3a !important;
+}
+
+.btn-danger:focus{
+    outline: none;
+}
+
+.btn-danger:active{
+    background-color:#c9302c !important;
+    border-color: #d43f3a !important;
+}
+
+.div-profile-header{
+    height: 35%;
+}
+
+.div-mascotas{
+    /*padding-top: 5%; */
+    /* padding-bottom: 5%; */
+    background-color: rgba(255, 235, 157, 1);
+    height: 65%;
+    overflow: auto;
+    border-top: solid thin rgba(255, 235, 157, 0.5);
+    box-shadow: 0px -1px 1px rgba(255, 235, 157, 1);
+}
+
+.div-ind-mascota{
+    padding-bottom: 5%;
+    border-bottom: solid thin grey;
+    /* border-top: solid thin grey; */
+    padding-top: 5%;
+    height: 25%;
 }
 
 /* Profile */

@@ -1,1 +1,10 @@
-<div ng-app="woodyApp" ng-controller="profileController" ng-init="initView()">{{username}}</div>
+<div  ng-app="woodyApp" ng-controller="profileController" ng-init="initView()">
+    <div class="div-profile-header">
+        <button class="pull-left col-xs-3 col-sm-3 btn btn-lg"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span></button>
+        <img src="./img/person.svg" class="img-profile col-sm-6 col-xs-6">
+        <button class="pull-right col-xs-3 col-sm-3 btn btn-lg"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+    </div>
+    <div class="div-mascotas">
+        <profile-datos-mascota></profile-datos-mascota>
+    </div>
+</div>

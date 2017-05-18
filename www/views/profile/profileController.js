@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 var app = angular.module('woodyApp.profile', [
 
 ]);
@@ -11,7 +11,7 @@ app.controller('profileController', ['$scope', '$http', function($scope, $http){
 
         $scope.username = username.substring(0, coma);
 
-        $http.get('http://woodyapp.hol.es/profile.php?username='+ $scope.username).
+        $http.get('https://www.institutmarianao.cat/woody/profileInfo.php?username='+ $scope.username).
         then(function(response) {
             console.log(response.username);
             console.log(response);

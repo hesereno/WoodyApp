@@ -14,7 +14,7 @@ app.controller('LoginController', ['$scope', '$http', '$state', function($scope,
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
         console.log(username + " " + password);
-        $http.get('http://woodyapp.hol.es/login.php?username='+ username +'&pass='+ password).
+        $http.get('https://www.institutmarianao.cat/woody/login.php?username='+ username +'&pass='+ password).
         then(function(response) {
             var result = response.data;
             console.log(result);

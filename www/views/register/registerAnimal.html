@@ -1,14 +1,14 @@
-<div  ng-app="woodyApp" ng-controller="RegisterAnimalController">
+<div ng-app="woodyApp" ng-controller="RegisterAnimalController" ng-init="initView()">
     <!--div class="decoradoTop"-->
     <div>
     </div>
     <div class="row-centro">
-    <form-animales-registro></form-animales-registro>
-    <div class="row">
-        <button type="submit" ng-click="" class="col-xs-2 col-sm-2 btn btn-lg">&lt;</button>
-        <button type="submit" ng-click="" class="col-xs-offset-3 col-xs-2 col-sm-offset-3 col-sm-2 btn btn-lg">+</button>
-        <button type="submit" ng-click="" class="col-xs-offset-3 col-xs-2 col-sm-offset-3 col-sm-2 btn btn-lg">&gt;</button><br>
-    </div>
+        <form-animales-registro ng-repeat="x in numero track by $index"></form-animales-registro>
+        <div class="row">
+            <button type="submit" ng-click="" class="col-xs-2 col-sm-2 btn btn-lg">&lt;</button>
+            <button type="submit" ng-click="" class="col-xs-offset-3 col-xs-2 col-sm-offset-3 col-sm-2 btn btn-lg">+</button>
+            <button type="submit" ui-sref="login" ng-click="registrarAnimales()" class="col-xs-offset-3 col-xs-2 col-sm-offset-3 col-sm-2 btn btn-lg">&gt;</button><br>
+        </div>
     </div>
     <!--div class="decoradobottom"-->
     <div>

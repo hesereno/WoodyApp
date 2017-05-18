@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 var app = angular.module('woodyApp', [
     'ui.router',
     'ngCookies',
@@ -8,15 +8,22 @@ var app = angular.module('woodyApp', [
     'woodyApp.registerPersona'
 ]);
 
-app.directive('formAnimalesRegistro', function() {
-    return {
-        restrict: 'E',
-        templateUrl: './directives/formAnimalesRegistro.html'
-    };
-});
+app
+    .directive('formAnimalesRegistro', function() {
+        return {
+            restrict: 'E',
+            templateUrl: './directives/formAnimalesRegistro.html'
+        }
+    })
+    .directive('profileDatosMascota', function() {
+        return {
+            restrict: 'E',
+            templateUrl: './directives/profileDatosMascota.html'
+        }
+    });
 
 app.config(function($stateProvider, $urlRouterProvider) {
-    //$urlRouterProvider.otherwise("login");
+    $urlRouterProvider.otherwise("splash");
     $stateProvider
         .state('login', {
             url: "/login",
@@ -33,6 +40,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('profile', {
             url: "/profile",
             templateUrl: "./views/profile/profile.html"
+        })
+        .state('splash', {
+            url: "/splash",
+            templateUrl: "./views/splashScreen/splashScreen.html"
         })
 });
 
@@ -51,11 +62,16 @@ app.controller('AppController', ['$scope', '$state', function($scope, $state){
      }*/
 
     $scope.initApp = function(){
-        if(localStorage.getItem('usr') != null){
-            $state.go('profile');
-        }else{
-            $state.go('login');
-        }
+        document.addEventListener('deviceready', function(){
+             if(localStorage.getItem('usr') != null){
+                $state.go('profile');
+             }else{
+                $state.go('login');
+             }
+             //$state.go('login');
+        }, false);
+        document.addEventListener("backbutton", function(){}, false);
+
     }
 
 }]);

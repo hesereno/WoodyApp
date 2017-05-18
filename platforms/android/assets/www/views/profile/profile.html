@@ -5,6 +5,6 @@
         <button class="pull-right col-xs-3 col-sm-3 btn btn-lg"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
     </div>
     <div class="div-mascotas">
-        <profile-datos-mascota></profile-datos-mascota>
+        <profile-datos-mascota ng-repeat="perro in perros" test={{perro.dogName}}></profile-datos-mascota>
     </div>
 </div>

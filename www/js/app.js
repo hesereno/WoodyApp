@@ -12,13 +12,16 @@ app
     .directive('formAnimalesRegistro', function() {
         return {
             restrict: 'E',
-            templateUrl: './directives/formAnimalesRegistro.html'
+            templateUrl: './directives/formAnimalesRegistro.html',
         }
     })
     .directive('profileDatosMascota', function() {
         return {
             restrict: 'E',
-            templateUrl: './directives/profileDatosMascota.html'
+            templateUrl: './directives/profileDatosMascota/profileDatosMascota.html',
+            scope:{
+                test: '@'
+            }
         }
     });
 

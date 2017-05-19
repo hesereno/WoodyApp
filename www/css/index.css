@@ -156,4 +156,64 @@
     height: 25%;
 }
 
+.img-mascota{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.btn-left{
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+}
+
+.btn-right{
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
 /* Profile */
+
+/* Map */
+
+.angular-google-map-container {
+    height: 400px;
+}
+
+/* Map */
+
+/* Friends */
+
+.input-search {
+    padding: 10px 16px !important;
+    height: 100% !important;
+    width: 75% !important;
+    border-radius: 0 !important;
+    font-size: 18px !important;
+}
+
+.btn-search{
+    height: 100% !important;
+    border-radius: 0 !important;
+}
+
+.btn-success{
+    background-color: #5cb85c !important;
+    border-color: #4cae4c !important;
+}
+
+.btn-success:focus{
+    background-color: #449d44 !important;
+    border-color: #255625 !important;
+}
+
+.div-search{
+    height: 8% !important;
+    margin: 0;
+}
+
+.div-friend{
+    height: 92%;
+    overflow: auto;
+}
+
+/* Friends */

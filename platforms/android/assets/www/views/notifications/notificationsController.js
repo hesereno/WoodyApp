@@ -16,5 +16,20 @@ app.controller('notificationsController',  ['$scope', '$http', function($scope, 
             },function(response){
                 console.log(response);
             });
+    };
+
+    $scope.acceptNotification = function(friend){
+        console.log(friend);
+        var userData = localStorage.getItem("usr");
+        userData = userData.substring(0, userData.indexOf(','));
+        var data = {"loggedUser": userData, "friend": friend};
+        $http.post("https://www.institutmarianao.cat/woody/acceptNotification.php", data).then(
+            function(response){
+                console.log(response);
+                console.log(response.data);
+
+            },function(response){
+                console.log(response);
+            });
     }
 }]);

@@ -2,6 +2,6 @@
     <p>{{view}}</p>
     <div ng-repeat="notification in notifications track by $index">
         <span>Solicitud de amistad de: {{notification.user1}}</span>
-        <button>ACEPTAR SOLICITUD</button>
+        <button ng-click="acceptNotification(notification.user1)">ACEPTAR SOLICITUD</button>
     </div>
 </div>

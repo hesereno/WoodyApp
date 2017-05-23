@@ -39,4 +39,18 @@ app.controller('friendsController',  ['$scope', '$http', function($scope, $http)
             });
     }
 
+    $scope.showFriendsList = function(){
+        var userData = localStorage.getItem("usr");
+        userData = userData.substring(0, userData.indexOf(','));
+        console.log(userData);
+        var data = {"userId":userData};
+        $http.post("https://www.institutmarianao.cat/woody/getFriends.php",data).then(
+            function(response){
+                console.log(response.data);
+                $scope.friends = response.data;
+            },function(response){
+                console.log(response.data);
+            });
+    }
+
 }]);

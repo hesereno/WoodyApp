@@ -3,11 +3,26 @@
     <div>
     </div>
     <div class="row-centro">
-        <form-animales-registro ng-repeat="x in numero track by $index"></form-animales-registro>
+        <!--form-animales-registro ng-repeat="x in numero track by $index"></form-animales-registro-->
+        <form ng-repeat="x in numero track by $index" class="col-xs-offset-1 col-sm-offset-1 col-xs-10 col-sm-10" name="loginForm" method="post" ng-app="woodyApp">
+            <div class="row">
+                <span>Nombre de tu mascota</span>
+                <input type="text" class="petname form-control input-login" placeholder="Pet name" aria-describedby="basic-addon1">
+            </div>
+            <div class="row">
+                <span>Fecha de nacimiento</span>
+                <input type="date" placeholder="Date" class="form-control date">
+            </div>
+            <div class="row">
+                <span>Foto de tu mascota</span>
+                <input type="button" class="imgInp" name="photo" valule="photo" ng-click="openFilePicker()"/>
+                <!-- image preview -->
+            </div>
+        </form>
         <div class="row">
             <button type="submit" ng-click="" class="col-xs-2 col-sm-2 btn btn-lg">&lt;</button>
             <button type="submit" ng-click="" class="col-xs-offset-3 col-xs-2 col-sm-offset-3 col-sm-2 btn btn-lg">+</button>
-            <button type="submit" ui-sref="login" ng-click="registrarAnimales()" class="col-xs-offset-3 col-xs-2 col-sm-offset-3 col-sm-2 btn btn-lg">&gt;</button><br>
+            <button type="submit" ui-sref="profile" ng-click="registrarAnimales()" class="col-xs-offset-3 col-xs-2 col-sm-offset-3 col-sm-2 btn btn-lg">&gt;</button><br>
         </div>
     </div>
     <!--div class="decoradobottom"-->

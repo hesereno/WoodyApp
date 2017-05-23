@@ -23,6 +23,28 @@ app.controller('profileController', ['$scope', '$http', function($scope, $http){
             console.log($scope.perros[0].dogName);
             console.log(response);
         });
+
+        $scope.checkNotifications();
+
+    };
+
+    $scope.checkNotifications = function(){
+        var userData = localStorage.getItem("usr");
+        userData = userData.substring(0, userData.indexOf(','));
+        console.log(userData);
+        var data = {"userId":userData};
+        $http.post("https://www.institutmarianao.cat/woody/getNotifications.php",data).then(
+            function(response){
+                console.log(response.data);
+                if(response.data == 0){
+                    $scope.notifications = false;
+                }else{
+                    $scope.numNotif = response.data;
+                    $scope.notifications = true;
+                }
+            },function(response){
+                console.log(response.data);
+            });
     }
 
 }]);

@@ -1,0 +1,23 @@
+<div ng-app="woodyApp" ng-controller="friendsController">
+    <form name="searchForm" method="post" class="div-search">
+        <input ng-model="myVar" ng-change="getUsersByName()" type="text" id="search" class="input-search pull-left form-control input-login" placeholder="Search..." aria-describedby="basic-addon1">
+        <button class="pull-right col-xs-3 col-sm-3 btn btn-lg btn-search" ui-sref=""><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+    </form>
+    <div class="div-friend">
+        <div class="div-ind-mascota" >
+            <img class="col-sm-4 col-xs-4 img-mascota" src="./img/image.jpg" alt="persona"/>
+            <div class="col-sm-8 col-xs-8">
+                <div class="row">
+                    <span>Nombre Amigo</span>
+                    <button type="button" ui-sref="otherProfile" class="col-sm-4 col-xs-4 pull-right btn btn-success btn-lg"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="buscando" class="search">
+        <div ng-repeat="persona in personas track by $index">
+            <p>Nombre: {{persona.username}}</p>
+            <button ng-click="gestionarAmistad(persona.username)">añadir a amigos</button>
+        </div>
+    </div>
+</div>

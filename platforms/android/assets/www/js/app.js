@@ -5,6 +5,8 @@ var app = angular.module('woodyApp', [
     'woodyApp.login',
     'woodyApp.registerAnimal',
     'woodyApp.profile',
+    'woodyApp.friends',
+    'woodyApp.notifications',
     'woodyApp.registerPersona'
 ]);
 
@@ -19,6 +21,15 @@ app
         return {
             restrict: 'E',
             templateUrl: './directives/profileDatosMascota/profileDatosMascota.html',
+            scope:{
+                test: '@'
+            }
+        }
+    })
+    .directive('friendsList', function() {
+        return {
+            restrict: 'E',
+            templateUrl: './directives/friendsList.html',
             scope:{
                 test: '@'
             }
@@ -47,6 +58,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
         .state('splash', {
             url: "/splash",
             templateUrl: "./views/splashScreen/splashScreen.html"
+        }).state('buscaPersonas', {
+            url: "/buscaPersonas",
+            templateUrl: "./views/friends/friends.html"
+        }).state('notifications', {
+            url: "/notifications",
+            templateUrl: "./views/notifications/notificationsViews.html"
         })
 });
 

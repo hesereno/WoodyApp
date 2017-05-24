@@ -4,12 +4,13 @@ var app = angular.module('woodyApp.registerAnimal', []);
 app.controller('RegisterAnimalController', ['$scope', '$http', '$rootScope', function($scope, $http, $rootScope){
 
     $scope.mascota = [];
+    $scope.mascotaImg = [];
     $scope.showImg = false;
 
     $scope.initView = function(){
         $scope.numero = new Array(parseInt($rootScope.numero));
-        console.log($rootScope.numero);
-    }
+        //console.log($rootScope.numero);
+    };
 
     $scope.registrarAnimales = function(){
 
@@ -19,21 +20,42 @@ app.controller('RegisterAnimalController', ['$scope', '$http', '$rootScope', fun
             $scope.mascota[i] = {"petname":mascotaName, "date":fecha};
             //consulta += "petname" + i + "="+ mascotaName +"&petdate"+i+"="+fecha+"&"
         }
-        console.log("entra");
-        console.log($scope.mascota);
+        //console.log("entra");
+        //console.log($scope.mascota);
         var test = localStorage.getItem('user');
-        console.log(test);
+        //console.log(test);
         var userData = JSON.parse(test);
         var data = [];
         data[0] = $scope.mascota;
         data[1] = userData;
-        console.log(JSON.stringify(data));
+        //console.log(JSON.stringify(data));
 
         $http.post('https://www.institutmarianao.cat/woody/loginMascota.php', data).
         then(function(response) {
             console.log(response.data);
             console.log(response);
+        },function(response) {
+            console.log(response.data);
+            console.log(response);
         });
+
+        /*console.log("-------for---------");
+        console.log($scope.mascotaImg.length);
+        for(i = 0; i < $scope.mascotaImg.length; i++);{
+            console.log(i);
+            var data2 = {"img":$scope.mascotaImg[i], "username":userData.username, "animal": $scope.mascota[i]};
+            console.log("data2:-------");
+            console.log(data2);
+            $http.post("https://www.institutmarianao.cat/woody/uploadFile.php",data2).then(
+                function(response){
+                    console.log(response);
+                },function(response){
+                    console.log(response);
+                });
+        }
+        console.log("----------------");
+        //console.log($scope.mascotaImg[0]);*/
+
     };
 
     $scope.openFilePicker = function(selection) {
@@ -51,7 +73,9 @@ app.controller('RegisterAnimalController', ['$scope', '$http', '$rootScope', fun
 
         navigator.camera.getPicture(function cameraSuccess(imageUri) {
 
-            console.log(imageUri);
+            //console.log(imageUri);
+            $scope.imageUri = imageUri;
+            $scope.mascotaImg.push($scope.imageUri);
 
         }, function cameraError(error) {
             console.debug("Unable to obtain picture: " + error, "app");
@@ -79,7 +103,7 @@ app.controller('RegisterAnimalController', ['$scope', '$http', '$rootScope', fun
         var options = {
             // Some common settings are 20, 50, and 100
             quality: 50,
-            destinationType: Camera.DestinationType.FILE_URI,
+            destinationType: Camera.DestinationType.DATA_URL,
             // In this app, dynamically set the picture source, Camera or photo gallery
             sourceType: srcType,
             encodingType: Camera.EncodingType.JPEG,

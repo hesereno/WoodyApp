@@ -9,6 +9,7 @@ app.controller('profileController', ['$scope', '$http', function($scope, $http){
         var username = localStorage.getItem('usr');
         var coma = username.indexOf(',');
 
+
         $scope.username = username.substring(0, coma);
 
         $http.get('https://www.institutmarianao.cat/woody/profileInfo.php?username='+ $scope.username).

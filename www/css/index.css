@@ -85,7 +85,7 @@
 
 /* Register*/
 .row-centro{
-    height:70% !important;
+    height:100% !important;
 }
 
 .row{
@@ -201,7 +201,7 @@
     border-color: #4cae4c !important;
 }
 
-.btn-success:focus{
+.btn-success:active{
     background-color: #449d44 !important;
     border-color: #255625 !important;
 }
@@ -217,3 +217,15 @@
 }
 
 /* Friends */
+
+/* Notifications */
+
+.div-ind-notification{
+    padding-bottom: 5%;
+    border-bottom: solid thin grey;
+    /* border-top: solid thin grey; */
+    padding-top: 5%;
+    height: 20%;
+}
+
+/* Notifications */

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "362268346114",
+    "firebase_url": "https://woody-3962a.firebaseio.com",
+    "project_id": "woody-3962a",
+    "storage_bucket": "woody-3962a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362268346114:android:329e42b66a68e952",
+        "android_client_info": {
+          "package_name": "com.app.woody"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362268346114-1k1ipknte891ovfqs5cp5jv7soc9m85q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrL-mqwPzn8g3Kx5hK7YEQhvj100XT4Ak"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -30,5 +30,21 @@
         },
         "is_top_level": false,
         "variables": {}
+    },
+    "cordova-plugin-k-imagecropper": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-k-imagecropper"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-fcm": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-fcm"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

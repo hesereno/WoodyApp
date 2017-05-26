@@ -32,7 +32,7 @@ app.controller('RegisterPersonaController',  ['$scope', '$rootScope', '$http', f
         for(var i = 0; i < num; i++){
             var mascotaName = document.getElementsByClassName("petname")[i].value;
             var fecha = document.getElementsByClassName("date")[i].value;
-            $scope.mascota[i] = {"petname":mascotaName, "date":fecha};
+            $scope.mascota.push({"petname":mascotaName, "date":fecha});
         }
         var userData = JSON.parse(test);
         var data = [];
@@ -68,6 +68,7 @@ app.controller('RegisterPersonaController',  ['$scope', '$rootScope', '$http', f
         var srcType = Camera.PictureSourceType.SAVEDPHOTOALBUM;
         var options = setOptions(srcType);
         var func = createNewFileEntry;
+        $scope.actualImg = selection;
 
         if (selection == "picker-thmb") {
             // To downscale a selected image,
@@ -80,7 +81,36 @@ app.controller('RegisterPersonaController',  ['$scope', '$rootScope', '$http', f
 
             //console.log(imageUri);
             $scope.imageUri = imageUri;
-            $scope.mascotaImg.push($scope.imageUri);
+            var options = {
+                url: imageUri,
+                title: "test",       // optional. android only. (here you can put title of image cropper activity) default: Image Cropper
+                ratio: "1/1",
+                autoZoomEnabled: false      // optional. android only. for iOS its always true (if it is true then cropper will automatically adjust the view) default: true
+            };
+            window.plugins.k.imagecropper.open(options, function(data) {
+                // its return an object with the cropped image cached url, cropped width & height, you need to manually delete the image from the application cache.
+                console.log(data);
+                $scope.croppedImage = data;
+
+
+                var img = document.getElementById("imagen" + $scope.actualImg);
+                img.onload = function(){
+                    var c = document.getElementById("canvas" + $scope.actualImg);
+                    c.width = $scope.croppedImage.width;
+                    c.height = $scope.croppedImage.height;
+                    var ctx = c.getContext("2d");
+                    ctx.drawImage(img, 0, 0, $scope.croppedImage.width, $scope.croppedImage.height);
+                    var dataUrl = c.toDataURL();
+                    var posComa = dataUrl.indexOf(',');
+                    dataUrl = dataUrl.substring(posComa + 1);
+                    $scope.mascotaImg.push(dataUrl);
+                    console.log("fin");
+                };
+                img.src = $scope.croppedImage.imgPath;
+
+            }, function(error) {
+                console.log(error);
+            });
 
         }, function cameraError(error) {
             console.debug("Unable to obtain picture: " + error, "app");
@@ -108,12 +138,12 @@ app.controller('RegisterPersonaController',  ['$scope', '$rootScope', '$http', f
         var options = {
             // Some common settings are 20, 50, and 100
             quality: 50,
-            destinationType: Camera.DestinationType.DATA_URL,
+            destinationType: Camera.DestinationType.FILE_URI,
             // In this app, dynamically set the picture source, Camera or photo gallery
             sourceType: srcType,
             encodingType: Camera.EncodingType.JPEG,
             mediaType: Camera.MediaType.PICTURE,
-            allowEdit: true,
+            allowEdit: false,
             correctOrientation: true  //Corrects Android orientation quirks
         }
         return options;

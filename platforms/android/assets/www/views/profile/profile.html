@@ -1,18 +1,27 @@
-<div  ng-app="woodyApp" ng-controller="profileController" ng-init="initView()">
+<div  ng-app="woodyApp" ng-controller="profileController" ng-init="initView()" ng-swipe-left="right()" ng-swipe-right="left()">
     <div class="div-profile-header">
         <button class="pull-left col-xs-3 col-sm-3 btn btn-lg btn-left" ui-sref="friends"><i class="fa fa-users" aria-hidden="true"></i></button>
         <img src="./img/person.svg" class="img-profile col-sm-6 col-xs-6">
-        <button class="pull-right col-xs-3 col-sm-3 btn btn-lg btn-right" ui-sref="settings"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+        <button class="pull-right col-xs-3 col-sm-3 btn btn-lg btn-right" ui-sref="settings">
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+        </button>
+        <button ng-show="notifications" class="pull-right col-xs-3 col-sm-3 btn btn-lg btn-right" ui-sref="notifications">
+            <i class="fa fa-bell">{{numNotif}}</i>
+        </button>
     </div>
     <div class="div-mascotas">
-        <profile-datos-mascota></profile-datos-mascota>
-        <profile-datos-mascota></profile-datos-mascota>
-        <profile-datos-mascota></profile-datos-mascota>
-        <profile-datos-mascota></profile-datos-mascota>
-        <profile-datos-mascota></profile-datos-mascota>
-        <profile-datos-mascota></profile-datos-mascota>
-        <profile-datos-mascota></profile-datos-mascota>
-        <profile-datos-mascota></profile-datos-mascota>
+        <div ng-repeat="perro in perros" test={{perro.dogName}} class="div-ind-mascota">
+            <img class="col-sm-4 col-xs-4 img-mascota" src="http://www.institutmarianao.cat/woody/profileImg/{{username}}{{perro.dogName}}.png" alt="mascota"/>
+            <div class="col-sm-8 col-xs-8">
+                <div class="row">
+                    <span>{{perro.dogName}}</span>
+                </div>
+                <div class="row">
+                    <span>EDAD MASCOTA</span>
+                    <button type="button" class="col-sm-4 col-xs-4 pull-right btn btn-danger btn-lg"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span></button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

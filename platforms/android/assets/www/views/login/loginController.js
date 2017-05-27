@@ -1,6 +1,7 @@
 'use strict';
 var app = angular.module('woodyApp.login', []);
 
+
 app.controller('LoginController', ['$scope', '$http', '$state', function($scope, $http, $state){
 
     $scope.title = "Woody";

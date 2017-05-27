@@ -1,3 +1,9 @@
-var app = angular.module('woodyApp.settings', []);
+var app = angular.module('woodyApp.otherProfile', []);
 
-app.controller('settingsController',  [function(){}]);
+app.controller('otherProfileController',  ['$scope', '$state', function($scope, $state){
+
+        $scope.back = function () {
+            window.history.back();
+        }
+
+}]);

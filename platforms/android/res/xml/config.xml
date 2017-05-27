@@ -1,8 +1,18 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.app.woody" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="Whitelist">
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
+    </feature>
+    <feature name="KImageCropper">
+        <param name="android-package" value="in.co.indusnet.plugins.cordova.imagecropper.KImageCropper" />
     </feature>
     <name>Woody</name>
     <description>
@@ -20,6 +30,22 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-intent href="market:*" />
+    <splash density="land-hdpi" src="./www/img/splashScreen.png" />
+    <splash density="land-ldpi" src="./www/img/splashScreen.png" />
+    <splash density="land-mdpi" src="./www/img/splashScreen.png" />
+    <splash density="land-xhdpi" src="./www/img/splashScreen.png" />
+    <splash density="port-hdpi" src="./www/img/splashScreen.png" />
+    <splash density="port-ldpi" src="./www/img/splashScreen.png" />
+    <splash density="port-mdpi" src="./www/img/splashScreen.png" />
+    <splash density="port-xhdpi" src="./www/img/splashScreen.png" />
+    <icon density="ldpi" src="./www/img/logo.png" />
+    <icon density="mdpi" src="./www/img/logo.png" />
+    <icon density="hdpi" src="./www/img/logo.png" />
+    <icon density="xhdpi" src="./www/img/logo.png" />
+    <icon density="xxhdpi" src="./www/img/logo.png" />
+    <icon density="xxxhdpi" src="./www/img/logo.png" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="Orientation" value="portrait" />
+    <preference name="SplashMaintainAspectRatio" value="false" />
+    <preference name="AutoHideSplashScreen" value="false" />
 </widget>

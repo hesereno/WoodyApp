@@ -1,12 +1,15 @@
 'use strict'
 var app = angular.module('woodyApp', [
     'ui.router',
+    'ngTouch',
     'woodyApp.login',
     'woodyApp.registerUser',
-    'woodyApp.registerAnimal',
     'woodyApp.profile',
     'woodyApp.settings',
-    'woodyApp.friends'
+    'woodyApp.friends',
+    'woodyApp.otherProfile',
+    'woodyApp.notifications',
+    'woodyApp.editProfile'
 ]);
 
 app
@@ -17,26 +20,13 @@ app
         };
     })
 
-    .directive('profileDatosMascota', function(){
-        return{
-            restrict: 'E',
-            templateUrl: './directives/profileDatosMascota.html'
-        };
-    })
-
     .directive('otherProfileDatosMascota', function(){
         return{
             restrict: 'E',
             templateUrl: './directives/otherProfileDatosMascota.html'
         };
-    })
-
-    .directive('friendsList', function(){
-        return{
-            restrict: 'E',
-            templateUrl: './directives/friendsList.html'
-        };
     });
+
 
 app.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("login");
@@ -73,13 +63,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
             url: "/friends",
             templateUrl: "./views/friends/friends.html"
         })
-        .state('splash', {
-            url: "/splash",
-            templateUrl: "./views/splashScreen/splashScreen.html"
+        .state('notifications', {
+            url: "/notifications",
+            templateUrl: "./views/notifications/notifications.html"
+        })
+        .state('editProfile', {
+            url: "/editProfile",
+            templateUrl: "./views/profile/editProfile.html"
         })
 });
 
-app.controller('AppController', ['$scope', '$state', function($scope, $state){
+app.controller('AppController', ['$scope','$http', '$state', function($scope, $http, $state){
 
     /*$scope.test = function(){
      $http.get('http://woodyappdev.000webhostapp.com/test.php').
@@ -92,17 +86,55 @@ app.controller('AppController', ['$scope', '$state', function($scope, $state){
      });
      }*/
 
+    //$state.go('login');
     $scope.initApp = function(){
         document.addEventListener('deviceready', function(){
+
+
+
+
             if(localStorage.getItem('usr') != null){
                 $state.go('profile');
             }else{
                 $state.go('login');
             }
-            //$state.go('login');
+            navigator.splashscreen.hide();
+
         }, false);
-        document.addEventListener("backbutton", function(){}, false);
 
     }
+
+    /*$scope.test = function(){
+        var data = {
+            "notification":{
+                "title":"Notification title",
+                "body":"Notification body",
+                "sound":"default",
+                "click_action":"FCM_PLUGIN_ACTIVITY",
+                "icon":"fcm_push_icon"
+            },
+            "data":{
+                "param1":"value1",
+                "param2":"value2"
+            },
+            "to":"fBCNT1xXis4:APA91bFj-Y1FcBLqHGyIEL9TMicEQR2WlcGx5J2W6O8jeMq7eCtyAuX91NoeejrEO408OZBsWAcUHSPSNbV6fTbK15mkd-o_-m2RpnhfgCGbIXRnv4sX7eA55TZSLcsmyK7G3X7YbsBt",
+            "priority":"high",
+            "restricted_package_name":""
+        };
+
+        $http.post("https://fcm.googleapis.com/fcm/send", data,
+        {
+            "Content-Type" : "application/json",
+            "Authorization" : "key=AIzaSyDfDHPU2lekHU2OPQBaAyPAGImGPJJ_Hmk"
+        })
+        .then(
+            function (response) {
+                console.log(response)
+            },
+            function (response) {
+                console.log(response)
+            }
+        );
+    }*/
 
 }]);

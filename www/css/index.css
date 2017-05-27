@@ -105,11 +105,32 @@
 }
 
 .form{
-    height: 70%;
+    height: 65% !important;
+    margin-bottom: 0;
 }
 
-.span-optional{
-    color: #a0a0a0 !important;
+.form-user{
+    margin-top: 10% !important;
+}
+
+.span-masc{
+    font-weight: bold;
+}
+
+.imagen{
+    height: auto;
+}
+
+.btn-bottom{
+    margin-bottom: 5% !important;
+}
+
+.imgInp{
+    background-image: url(../img/camera.png) !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-color: rgba(255, 235, 157, 0.5) !important;
 }
 
 /* Register*/
@@ -118,6 +139,7 @@
 
 .img-profile{
     padding:0 !important;
+    margin-top: 2.5%;
 }
 
 .btn-danger{
@@ -135,7 +157,7 @@
 }
 
 .div-profile-header{
-    height: 35%;
+    height: 35% !important;
 }
 
 .div-mascotas{
@@ -153,7 +175,7 @@
     border-bottom: solid thin grey;
     /* border-top: solid thin grey; */
     padding-top: 5%;
-    height: 25%;
+    height: 33.33333333%;
 }
 
 .img-mascota{
@@ -225,7 +247,31 @@
     border-bottom: solid thin grey;
     /* border-top: solid thin grey; */
     padding-top: 5%;
-    height: 20%;
+    height: 25%;
 }
 
 /* Notifications */
+
+/* */
+
+.div-btn-profile{
+    height: 10% !important;
+}
+
+.btn-edit{
+    height: 100% !important;
+}
+
+.div-mascotas-edit{
+    height: 55% !important;
+}
+
+.div-ind-mascota-edit{
+    padding-bottom: 5%;
+    border-bottom: solid thin grey;
+    /* border-top: solid thin grey; */
+    padding-top: 5%;
+    height: 40%;
+}
+
+/* */

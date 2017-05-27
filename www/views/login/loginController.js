@@ -1,12 +1,15 @@
 'use strict';
 var app = angular.module('woodyApp.login', []);
 
+
 app.controller('LoginController', ['$scope', '$http', '$state', function($scope, $http, $state){
 
     $scope.title = "Woody";
 
     $scope.initView = function(){
-
+        document.addEventListener("backbutton", function(){
+            navigator.app.exitApp();
+        }, false);
     };
 
     $scope.checkLogin = function(){

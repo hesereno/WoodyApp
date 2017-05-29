@@ -38,7 +38,7 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
         console.log("pass:" + pass);
         console.log("repass:" + repass);
         if(pass == repass) {
-            if (num == ""){
+            if (num.value == ""){
                 var user = {"username": nombre, "pass": pass, "nDogs": num};
                 $rootScope.numero = user.nDogs;
                 var test = JSON.stringify(user);

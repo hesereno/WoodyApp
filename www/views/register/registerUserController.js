@@ -83,12 +83,11 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
                 $state.go('profile');
             }
             else{
-                console.log("numerror")
+                alert("Debes tener mínimo 1 perro")
             }
         }
         else
         {
-            console.log("passerror")
             alert("Las contraseñas no coinciden");
         }
         /*

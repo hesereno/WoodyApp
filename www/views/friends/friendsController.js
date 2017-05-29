@@ -61,4 +61,8 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
             });
     }
 
+    $scope.setUserVidited = function(userVidited){
+        localStorage.setItem("userVisited", userVidited)
+    }
+
 }]);

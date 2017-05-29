@@ -89,10 +89,6 @@ app.controller('AppController', ['$scope','$http', '$state', function($scope, $h
     //$state.go('login');
     $scope.initApp = function(){
         document.addEventListener('deviceready', function(){
-
-
-
-
             if(localStorage.getItem('usr') != null){
                 $state.go('profile');
             }else{

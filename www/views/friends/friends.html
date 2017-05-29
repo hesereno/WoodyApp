@@ -3,9 +3,9 @@
         <input ng-model="myVar" ng-change="getUsersByName()" type="text" id="search" class="input-search pull-left form-control input-login" placeholder="Search..." aria-describedby="basic-addon1">
         <button class="pull-right col-xs-3 col-sm-3 btn btn-lg btn-search" ui-sref=""><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
     </form>
-    <div ng-hide="buscando" class="div-friend">
-        <div class="div-ind-notification" ng-repeat="friend in friends track by $index">
-            <img class="col-sm-4 col-xs-4 img-mascota" ui-sref="otherProfile" src="./img/image.jpg" alt="persona"/>
+    <div ng-hide="buscando" class="div-friend" ui-sref="otherProfile">
+        <div class="div-ind-notification" ng-repeat="friend in friends track by $index" ng-click="setUserVidited(friend.user2)">
+            <img class="col-sm-4 col-xs-4 img-mascota" src="http://www.institutmarianao.cat/woody/profileImg/{{friend.user2}}.png" class="img-profile col-sm-6 col-xs-6" alt="persona"/>
             <div class="col-sm-8 col-xs-8">
                 <div class="row">
                     <span ui-sref="otherProfile">{{friend.user2}}</span>
@@ -13,9 +13,9 @@
             </div>
         </div>
     </div>
-    <div ng-show="buscando" class="search div-friend">
-        <div ng-repeat="persona in personas track by $index" class="div-ind-notification">
-            <img class="col-sm-4 col-xs-4 img-mascota" ui-sref="otherProfile" src="./img/image.jpg" alt="persona"/>
+    <div ng-show="buscando" class="search div-friend" ui-sref="otherProfile">
+        <div ng-repeat="persona in personas track by $index" class="div-ind-notification" ng-click="setUserVidited(persona.username)">
+            <img class="col-sm-4 col-xs-4 img-mascota" src="http://www.institutmarianao.cat/woody/profileImg/{{persona.username}}.png" alt="persona"/>
             <div class="col-sm-8 col-xs-8">
                 <div class="row">
                     <span ui-sref="otherProfile">{{persona.username}}</span>

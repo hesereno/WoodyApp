@@ -3,8 +3,8 @@
         <button class="pull-left col-xs-3 col-sm-3 btn btn-lg btn-left" ui-sref="profile">
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
         </button>
-        <img src="./img/person.svg" class="img-profile col-sm-6 col-xs-6">
-        <button type="submit" class="pull-right col-xs-3 col-sm-3 btn btn-lg btn-right btn-success" ng-click="">
+        <img src="http://www.institutmarianao.cat/woody/profileImg/{{username}}.png" class="img-profile col-sm-6 col-xs-6">
+        <button type="submit" class="pull-right col-xs-3 col-sm-3 btn btn-lg btn-right btn-success" ng-click="guardarCambios()">
             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
         </button>
     </div>
@@ -16,12 +16,13 @@
             <span class="fa fa-user" aria-hidden="true"></span>
         </button>
     </div>
-    <form name="formDog" class="div-mascotas div-mascotas-edit form" ng-hide="editDog">
-        <div ng-repeat="perro in perros" test={{perro.dogName}} class="div-ind-mascota-edit">
-            <img class="col-sm-4 col-xs-4 img-mascota" src="http://www.institutmarianao.cat/woody/profileImg/{{username}}{{perro.dogName}}.png" alt="mascota"/>
+    <form name="formDog" class="div-mascotas div-mascotas-edit form" ng-show="editDog">
+        <div ng-repeat="perro in perros track by $index" test={{perro.dogName}} class="div-ind-mascota-edit">
+            <img class="col-sm-4 col-xs-4 img-mascota" ng-click="openFilePicker($index)" id="imgMascota{{$index}}"  src="http://www.institutmarianao.cat/woody/profileImg/{{username}}{{perro.dogName}}.png" alt="mascota"/>
+            <canvas id="canvas{{$index}}" ng-hide="true"></canvas>
             <div class="col-sm-8 col-xs-8">
                 <div class="row">
-                    <input type="text" class="petname form-control input-login" value="{{perro.dogName}}" aria-describedby="basic-addon1"/>
+                    <span id="petname" class="petname">{{perro.dogName}}</span>
                 </div>
                 <div class="row">
                     <span>EDAD MASCOTA</span>
@@ -29,9 +30,10 @@
             </div>
         </div>
     </form>
-    <form name="formUser" class="div-mascotas div-mascotas-edit form" ng-show="editDog">
+    <form name="formUser" class="div-mascotas div-mascotas-edit form" ng-hide="editDog">
         <div>
-            <img class="col-sm-4 col-xs-4 img-mascota" src="./img/person.svg" alt="perfil"/>
+            <img class="col-sm-4 col-xs-4 img-mascota" id="imgProfile" ng-click="openFilePicker()" src="https://www.institutmarianao.cat/woody/profileImg/{{username}}.png" alt="perfil"/>
+            <canvas id="canvas" ng-hide="true"></canvas>
             <div class="col-sm-8 col-xs-8">
                 <div class="row">
                     <span>Contraseña</span>

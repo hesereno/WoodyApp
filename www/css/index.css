@@ -74,7 +74,6 @@
 
 .center-div{
     padding: 1em 0 1em 0;
-
 }
 
 .bottom-div{
@@ -140,6 +139,7 @@
 .img-profile{
     padding:0 !important;
     margin-top: 2.5%;
+    border-radius: 50%;
 }
 
 .btn-danger{
@@ -166,8 +166,22 @@
     background-color: rgba(255, 235, 157, 1);
     height: 65%;
     overflow: auto;
-    border-top: solid thin rgba(255, 235, 157, 0.5);
-    box-shadow: 0px -1px 1px rgba(255, 235, 157, 1);
+    /*border-top: solid thin rgba(255, 235, 157, 0.5);
+    box-shadow: 0px -1px 1px rgba(255, 235, 157, 1);*/
+}
+
+.div-nombre{
+    background-color: rgba(255, 235, 157, 1) !important;
+    text-align: center !important;
+    font-weight: bold !important;
+    font-size: 2em !important;
+    border-bottom: solid thin grey;
+}
+
+.span-nombre{
+    position: relative;
+    top: 50%;
+    line-height: 10%;
 }
 
 .div-ind-mascota{
@@ -181,6 +195,7 @@
 .img-mascota{
     max-height: 100%;
     max-width: 100%;
+    border-radius: 50%;
 }
 
 .btn-left{
@@ -191,6 +206,10 @@
 .btn-right{
     border-bottom-right-radius: 0 !important;
     border-top-right-radius: 0 !important;
+}
+
+.petname{
+    font-size: 1.3em;
 }
 
 /* Profile */
@@ -252,7 +271,7 @@
 
 /* Notifications */
 
-/* */
+/* Edit */
 
 .div-btn-profile{
     height: 10% !important;
@@ -274,4 +293,4 @@
     height: 40%;
 }
 
-/* */
+/* Edit */

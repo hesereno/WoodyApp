@@ -20,9 +20,6 @@ app.controller('profileController', ['$scope', '$http', '$state', function($scop
                 response.data[i] = JSON.parse(string);
             }
             $scope.perros = response.data;
-            console.log($scope.perros);
-            console.log($scope.perros[0].dogName);
-            console.log(response);
         });
 
         $scope.checkNotifications();

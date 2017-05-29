@@ -31,44 +31,74 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
         var repass = document.getElementById("rePassword").value;
         var num = document.getElementById("nPerros").value;
 
-        var user = {"username": nombre, "pass": pass, "nDogs": num};
-        $rootScope.numero = user.nDogs;
-        var test = JSON.stringify(user);
-        localStorage.setItem("user",test);
-        console.log(test);
+        /* COMPROVAR USUARIO */
+        /*
+        if (usuario no existe){
+         */
+        console.log("pass:" + pass);
+        console.log("repass:" + repass);
+        if(pass == repass) {
+            if (num == ""){
+                var user = {"username": nombre, "pass": pass, "nDogs": num};
+                $rootScope.numero = user.nDogs;
+                var test = JSON.stringify(user);
+                localStorage.setItem("user", test);
+                console.log(test);
 
-        for(var i = 0; i < num; i++){
-            var mascotaName = document.getElementsByClassName("petname")[i].value;
-            var fecha = document.getElementsByClassName("date")[i].value;
-            $scope.mascota.push({"petname":mascotaName, "date":fecha});
-        }
-        var userData = JSON.parse(test);
-        var data = [];
-        data[0] = $scope.mascota;
-        data[1] = userData;
-        //console.log(JSON.stringify(data));
+                for (var i = 0; i < num; i++) {
+                    var mascotaName = document.getElementsByClassName("petname")[i].value;
+                    var fecha = document.getElementsByClassName("date")[i].value;
+                    $scope.mascota.push({"petname": mascotaName, "date": fecha});
+                }
+                var userData = JSON.parse(test);
+                var data = [];
+                data[0] = $scope.mascota;
+                data[1] = userData;
+                //console.log(JSON.stringify(data));
 
-        $http.post('https://www.institutmarianao.cat/woody/loginMascota.php', data).
-        then(function(response) {
-            console.log(response.data);
-            console.log(response);
-
-        },function(response) {
-            console.log(response.data);
-            console.log(response);
-        });
-
-        localStorage.setItem("usr", user.username + ",true");
-
-        for(i = 0; i < $scope.mascotaImg.length; i++){
-            var data = {"img":$scope.mascotaImg[i], "username":user.username, "animal":$scope.mascota[i].petname};
-            $http.post("https://www.institutmarianao.cat/woody/uploadFile.php",data).then(
-                function(response){
+                $http.post('https://www.institutmarianao.cat/woody/loginMascota.php', data).then(function (response) {
+                    console.log(response.data);
                     console.log(response);
-                },function(response){
+
+                }, function (response) {
+                    console.log(response.data);
                     console.log(response);
                 });
+
+                localStorage.setItem("usr", user.username + ",true");
+
+                for (i = 0; i < $scope.mascotaImg.length; i++) {
+                    var data = {
+                        "img": $scope.mascotaImg[i],
+                        "username": user.username,
+                        "animal": $scope.mascota[i].petname
+                    };
+                    $http.post("https://www.institutmarianao.cat/woody/uploadFile.php", data).then(
+                        function (response) {
+                            console.log(response);
+                        }, function (response) {
+                            console.log(response);
+                        });
+                }
+                $state.go('profile');
+            }
+            else{
+                console.log("numerror")
+            }
         }
+        else
+        {
+            console.log("passerror")
+            alert("Las contraseñas no coinciden");
+        }
+        /*
+        }
+        else{
+           */
+        //alert("Nombre de usuario existente.");
+        /*
+        }
+        */
 
     };
 

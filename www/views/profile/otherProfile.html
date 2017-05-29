@@ -1,0 +1,22 @@
+<div  ng-app="woodyApp" ng-controller="otherProfileController" ng-init="initView()" ng-swipe-right="back()">
+    <div class="div-profile-header">
+        <button ui-sref="friends" class="pull-left col-xs-3 col-sm-3 btn btn-lg btn-left"><i class="glyphicon glyphicon-arrow-left" aria-hidden="true"></i></button>
+        <h1>{{userVisited}}</h1>
+        <img src="http://www.institutmarianao.cat/woody/profileImg/{{userVisited}}.png" class="img-profile col-sm-6 col-xs-6">
+    </div>
+    <div class="div-mascotas">
+        <div ng-repeat="perro in perros" class="div-ind-mascota" ng-click="perfilPerro">
+            <img class="col-sm-4 col-xs-4 img-mascota" src="http://www.institutmarianao.cat/woody/profileImg/{{userVisited}}{{perro.dogName}}.png" alt="mascota"/>
+            <div class="col-sm-8 col-xs-8">
+                <div class="row">
+                    <span>{{perro.dogName}}</span>
+                </div>
+                <div class="row">
+                    <span>EDAD MASCOTA</span>
+                    <button type="button" class="col-sm-4 col-xs-4 pull-right btn btn-danger btn-lg"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

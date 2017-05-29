@@ -1,0 +1,55 @@
+<div  ng-app="woodyApp" ng-controller="editProfileController" ng-init="initView()" ng-swipe-right="left()">
+    <div class="div-profile-header">
+        <button class="pull-left col-xs-3 col-sm-3 btn btn-lg btn-left" ui-sref="profile">
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+        </button>
+        <img src="http://www.institutmarianao.cat/woody/profileImg/{{username}}.png" class="img-profile col-sm-6 col-xs-6">
+        <button type="submit" class="pull-right col-xs-3 col-sm-3 btn btn-lg btn-right btn-success" ng-click="guardarCambios()">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div class="div-btn-profile">
+        <button class="pull-left col-xs-6 col-sm-6 btn btn-lg btn-right btn-left btn-edit" ng-click="buttonPaw()">
+            <span class="fa fa-paw" aria-hidden="true"></span>
+        </button>
+        <button type="submit" class="pull-right col-xs-6 col-sm-6 btn btn-lg btn-right btn-left btn-edit" ng-click="buttonUser()">
+            <span class="fa fa-user" aria-hidden="true"></span>
+        </button>
+    </div>
+    <form name="formDog" class="div-mascotas div-mascotas-edit form" ng-show="editDog">
+        <div ng-repeat="perro in perros track by $index" test={{perro.dogName}} class="div-ind-mascota-edit">
+            <img class="col-sm-4 col-xs-4 img-mascota" ng-click="openFilePicker($index)" id="imgMascota{{$index}}"  src="http://www.institutmarianao.cat/woody/profileImg/{{username}}{{perro.dogName}}.png" alt="mascota"/>
+            <canvas id="canvas{{$index}}" ng-hide="true"></canvas>
+            <div class="col-sm-8 col-xs-8">
+                <div class="row">
+                    <span id="petname" class="petname form-control input-login">{{perro.dogName}}</span>
+                </div>
+                <div class="row">
+                    <span>EDAD MASCOTA</span>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form name="formUser" class="div-mascotas div-mascotas-edit form" ng-hide="editDog">
+        <div>
+            <img class="col-sm-4 col-xs-4 img-mascota" id="imgProfile" ng-click="openFilePicker()" src="https://www.institutmarianao.cat/woody/profileImg/{{username}}.png" alt="perfil"/>
+            <canvas id="canvas" ng-hide="true"></canvas>
+            <div class="col-sm-8 col-xs-8">
+                <div class="row">
+                    <span>Contraseña</span>
+                    <input type="password" id="antPassword" class="form-control input-login" required="required" placeholder="Password" aria-describedby="basic-addon1">
+                </div>
+                <br>
+                <div class="row">
+                    <span>Contraseña nueva</span>
+                    <input type="password" id="password" class="form-control input-login" required="required" placeholder="New Password" aria-describedby="basic-addon1">
+                </div>
+                <br>
+                <div class="row">
+                    <span>Confirma tu nueva contraseña</span>
+                    <input type="password" id="rePassword" class="form-control input-login" required="required" placeholder="Confirm Password" aria-describedby="basic-addon1">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

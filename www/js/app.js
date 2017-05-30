@@ -106,6 +106,12 @@ app.controller('AppController', ['$scope','$http', '$state', function($scope, $h
                 .handleNotificationOpened(function(jsonData){
                     console.log("Notification opened:\n" + JSON.stringify(jsonData));
                     console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+                    console.log(jsonData.notification.payload.additionalData.notificationState);
+                    var notificationState = jsonData.notification.payload.additionalData.notificationState;
+                    switch(notificationState){
+                        case 'solicitudAmistad': $state.go('notifications');break;
+                        default: console.log("la no risa");break;
+                    }
                 })
                 .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
 

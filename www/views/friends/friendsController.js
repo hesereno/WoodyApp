@@ -48,7 +48,11 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
                     function(response){
                         console.log(response.data);
                         var userToken = response.data.token;
-                        var notificationObj = { contents: {en: "Tienes una solicitud de amistad de" + userData}, include_player_ids: [userToken]};
+                        var notificationObj = {
+                            contents: {en: "Tienes una solicitud de amistad de " + userData},
+                            include_player_ids: [userToken],
+                            data: {"notificationState": "solicitudAmistad"}
+                        };
                         window.plugins.OneSignal.postNotification(notificationObj,
                             function(successResponse) {
                                 console.log("Notification Post Success:", successResponse);

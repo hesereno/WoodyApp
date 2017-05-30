@@ -11,10 +11,10 @@
                 <!--<a class="col-xs-12 col-sm-12 txt-login" href="#">Has olvidado la contraseña?</a>-->
             </div>
             <div class="row bottom-div">
-                <button type="button"
-                    class="col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8 btn btn-lg" ng-click="checkLogin()" >ENTRAR</button><br>
+                <button type="button" class="col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8 btn btn-lg" ng-click="checkLogin()">ENTRAR</button><br>
                 <a class="col-xs-12 col-sm-12 txt-login" ui-sref="registerUser">Aún no tienes cuenta?</a>
             </div>
+            <div ng-show="loading" class="loader loginLoading"></div>
         </form>
     </div>
 </div>

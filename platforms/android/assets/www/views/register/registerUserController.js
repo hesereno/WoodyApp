@@ -30,8 +30,8 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
         var pass = document.getElementById("password").value;
         var repass = document.getElementById("rePassword").value;
         var num = document.getElementById("nPerros").value;
-
-        var user = {"username": nombre, "pass": pass, "nDogs": num};
+        var token = JSON.parse(localStorage.getItem("deviceId")).userId;
+        var user = {"username": nombre, "pass": pass, "nDogs": num, "token":token};
         $rootScope.numero = user.nDogs;
         var test = JSON.stringify(user);
         localStorage.setItem("user",test);

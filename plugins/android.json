@@ -26,6 +26,9 @@
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.app.woody"
+        },
+        "onesignal-cordova-plugin": {
+            "PACKAGE_NAME": "com.app.woody"
         }
     },
     "dependent_plugins": {

@@ -1,7 +1,7 @@
 <div  ng-app="woodyApp" ng-controller="profileController" ng-init="initView()" ng-swipe-left="right()" ng-swipe-right="left()">
     <div class="div-profile-header">
         <button class="pull-left col-xs-3 col-sm-3 btn btn-lg btn-left" ui-sref="friends"><i class="fa fa-users" aria-hidden="true"></i></button>
-        <h1>{{username}}</h1>
+        <span>{{username}}</span>
         <img src="http://www.institutmarianao.cat/woody/profileImg/{{username}}.png" class="img-profile col-sm-6 col-xs-6">
         <button class="pull-right col-xs-3 col-sm-3 btn btn-lg btn-right" ui-sref="settings">
             <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>

@@ -42,6 +42,25 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
         $http.post("https://www.institutmarianao.cat/woody/getRelationship.php",data).then(
             function(response){
                 console.log(response.data);
+                console.log(userId);
+                data = {'userId':userId};
+                $http.post("https://www.institutmarianao.cat/woody/getUserToken.php",data).then(
+                    function(response){
+                        console.log(response.data);
+                        var userToken = response.data.token;
+                        var notificationObj = { contents: {en: "Tienes una solicitud de amistad de" + userData}, include_player_ids: [userToken]};
+                        window.plugins.OneSignal.postNotification(notificationObj,
+                            function(successResponse) {
+                                console.log("Notification Post Success:", successResponse);
+                            },
+                            function (failedResponse) {
+                                console.log("Notification Post Failed: ", failedResponse);
+                            }
+                        );
+                    }),
+                    function(response){
+                        console.log(response);
+                    };
             },function(response){
                 console.log(response.data);
             });

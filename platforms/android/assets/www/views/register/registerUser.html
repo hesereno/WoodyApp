@@ -4,17 +4,26 @@
         <form class="col-xs-offset-1 col-sm-offset-1 col-sm-11 col-xs-11 form-user" name="loginForm" method="post">
             <div class="row">
                 <span>Nombre de usuario</span>
-                <input type="text" id="username" class="form-control input-login " required="required" placeholder="Username" aria-describedby="basic-addon1">
+                <input type="text" id="username" class="form-control input-login " required="required" placeholder="Nombre de usuario" aria-describedby="basic-addon1">
+            </div>
+            <br>
+            <div class="row">
+                <span>Nombre</span>
+                <input type="text" id="nombre" class="form-control input-login " required="required" placeholder="Nombre" aria-describedby="basic-addon1">
+            </div>
+            <div class="row">
+                <span>Apellido</span>
+                <input type="text" id="apellidos" class="form-control input-login " required="required" placeholder="Nombre" aria-describedby="basic-addon1">
             </div>
             <br>
             <div class="row">
                 <span>Contraseña</span>
-                <input type="password" id="password" class="form-control input-login" required="required" placeholder="Password" aria-describedby="basic-addon1">
+                <input type="password" id="password" class="form-control input-login" required="required" placeholder="Contraseña" aria-describedby="basic-addon1">
             </div>
             <br>
             <div class="row">
                 <span>Confirma tu contraseña</span>
-                <input type="password" id="rePassword" class="form-control input-login" required="required" placeholder="Confirm Password" aria-describedby="basic-addon1">
+                <input type="password" id="rePassword" class="form-control input-login" required="required" placeholder="Confirma contraseña" aria-describedby="basic-addon1">
             </div>
             <br>
             <div class="row">
@@ -31,10 +40,15 @@
                 <span>Nombre de tu mascota</span>
                 <input type="text" class="petname form-control input-login" placeholder="Pet name" aria-describedby="basic-addon1">
             </div>
+            <div class="row">
+                <span>Sexo</span>
+                <span>Hembra</span><input type="radio" id="hembra" name="sexo" checked class="petname form-control input-login" aria-describedby="basic-addon1">
+                <span>Macho</span><input type="radio" id="macho" name="sexo" class="petname form-control input-login" aria-describedby="basic-addon1">
+            </div>
             <br>
             <div class="row">
                 <span>Fecha de nacimiento</span>
-                <input type="date" placeholder="Date" class="form-control date">
+                <input type="date" placeholder="Date" id="date" class="form-control date">
             </div>
             <br>
             <div class="row">
@@ -42,7 +56,6 @@
                 <input type="button" class="imgInp col-xs-offset-5 col-sm-offset-5 col-xs-2 col-sm-2 btn btn-lg" name="photo" valule="photo" ng-click="openFilePicker($index)"><br>
                 <img class="imagen col-xs-offset-1 col-sm-offset-1 col-xs-10 col-sm-10" ng-click="openFilePicker($index)" id="imagen{{$index}}">
                 <canvas ng-show="false" class="imagen col-xs-4 col-sm-4" id="canvas{{$index}}"/>
-                <!-- image preview -->
             </div>
         </form>
         <div class="row">

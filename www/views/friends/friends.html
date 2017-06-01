@@ -19,7 +19,8 @@
             <div class="col-sm-8 col-xs-8">
                 <div class="row">
                     <span ui-sref="otherProfile">{{persona.username}}</span>
-                    <button type="button" ng-click="gestionarAmistad(persona.username)" class="col-sm-4 col-xs-4 pull-right btn btn-success btn-lg"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+                    <button ng-show="isFriend(persona.username)" type="button" ng-click="unfollow(persona.username)" class="col-sm-4 col-xs-4 pull-right btn btn-success btn-lg">unfollow</button>
+                    <button ng-hide="isFriend(persona.username)" type="button" ng-click="gestionarAmistad(persona.username)" class="col-sm-4 col-xs-4 pull-right btn btn-success btn-lg">follow</i></button>
                 </div>
             </div>
         </div>

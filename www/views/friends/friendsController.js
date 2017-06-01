@@ -3,6 +3,7 @@ var app = angular.module('woodyApp.friends', []);
 app.controller('friendsController',  ['$scope', '$state','$http', function($scope, $state,$http){
 
     $scope.buscando = false;
+    $scope.isMyFriend = false;
 
     $scope.back = function () {
         $state.go('profile');
@@ -36,8 +37,6 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
     $scope.gestionarAmistad = function(userId){
         var userData = localStorage.getItem("usr");
         userData = userData.substring(0, userData.indexOf(','));
-        console.log(userData);
-        console.log(userId);
         var data = {"userId":userData, "friend":userId};
         $http.post("https://www.institutmarianao.cat/woody/getRelationship.php",data).then(
             function(response){
@@ -68,7 +67,7 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
             },function(response){
                 console.log(response.data);
             });
-    }
+    };
 
     $scope.showFriendsList = function(){
         var userData = localStorage.getItem("usr");
@@ -82,10 +81,34 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
             },function(response){
                 console.log(response.data);
             });
-    }
+    };
 
     $scope.setUserVidited = function(userVidited){
         localStorage.setItem("userVisited", userVidited)
+    };
+
+    $scope.isFriend = function(friendName){
+        for(var i = 0; i < $scope.friends.length; i++){
+            console.log(friendName);
+            console.log($scope.friends[i].user2);
+            console.log($scope.isMyFriend);
+            if(friendName == $scope.friends[i].user2) {
+                return true;
+            }
+        }
+        return false;
     }
 
+    $scope.unfollow = function(userVisited){
+        var userData = localStorage.getItem("usr");
+        userData = userData.substring(0, userData.indexOf(','));
+        var data = {"userId": userData,"userId2":userVisited};
+        $http.post("https://www.institutmarianao.cat/woody/deleteFriendsRelationshipById.php", data).then(
+            function(response){
+                $scope.initView();
+            },function(response){
+                console.log(response._error);
+            }
+        );
+    };
 }]);

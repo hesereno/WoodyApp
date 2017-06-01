@@ -1,7 +1,7 @@
 'use strict'
 var app = angular.module('woodyApp.registerUser', []);
 
-app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$http', function($scope, $rootScope, $state, $http){
+app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$http', 'md5', function($scope, $rootScope, $state, $http, md5){
 
     $scope.back = function () {
         $state.go('login');
@@ -28,6 +28,7 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
 
         var nombre = document.getElementById("username").value;
         var pass = document.getElementById("password").value;
+        //pass = md5.createHash(pass);
         var repass = document.getElementById("rePassword").value;
         var num = document.getElementById("nPerros").value;
         var token = JSON.parse(localStorage.getItem("deviceId")).userId;

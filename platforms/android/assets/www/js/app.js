@@ -9,6 +9,8 @@ var app = angular.module('woodyApp', [
     'woodyApp.friends',
     'woodyApp.otherProfile',
     'woodyApp.notifications',
+    'angular-md5',
+    'ngDialog',
     'woodyApp.editProfile'
 ]);
 

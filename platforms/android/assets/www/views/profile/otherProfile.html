@@ -3,6 +3,8 @@
         <button ui-sref="friends" class="pull-left col-xs-3 col-sm-3 btn btn-lg btn-left"><i class="glyphicon glyphicon-arrow-left" aria-hidden="true"></i></button>
         <span>{{userVisited}}</span>
         <img src="http://www.institutmarianao.cat/woody/profileImg/{{userVisited}}.png" class="img-profile col-sm-6 col-xs-6">
+        <button ng-show="userIsFriend" ng-click="unFollow(userVisied)" class="pull-right col-xs-3 col-sm-3 btn btn-lg btn-right">Dejar de ser amigos</button>
+        <button ng-hide="userIsFriend" ng-click="follow(userVisited)" class="pull-right col-xs-3 col-sm-3 btn btn-lg btn-right">enviar solicitud de amistad</button>
     </div>
     <div class="div-mascotas">
         <div ng-repeat="perro in perros" class="div-ind-mascota" ng-click="perfilPerro">

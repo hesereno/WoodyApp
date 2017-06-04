@@ -1,5 +1,5 @@
-<div ng-app="woodyApp" ng-controller="settingsController" ng-swipe-right="back()" class="row-centro">
+<div ng-app="woodyApp" ng-controller="profileController" ng-swipe-right="back()" class="row-centro">
     <!--<button class="col-xs-12 col-sm-12 btn btn-lg" ui-sref=""><span>Map</span></button>-->
-    <button class="col-xs-12 col-sm-12 btn btn-lg" ui-sref="editProfile"><span class="glyphicon glyphicon-pencil">Editar</span></button>
-    <button class="col-xs-12 col-sm-12 btn btn-lg" ng-click="logOut()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"> Cerrar sesión</span></button>
+    <button class="col-xs-12 col-sm-12 btn btn-lg" id="btnedit" ng-click="goEditProfile()"><span class="glyphicon glyphicon-pencil"> Editar</span></button>
+    <button class="col-xs-12 col-sm-12 btn btn-lg" id="btnlogout" ng-click="logOut()"><span class="glyphicon glyphicon-log-out" aria-hidden="true"> Cerrar sesión</span></button>
 </div>

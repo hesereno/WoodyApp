@@ -2,6 +2,7 @@
 var app = angular.module('woodyApp', [
     'ui.router',
     'ngTouch',
+    'ngDialog',
     'woodyApp.login',
     'woodyApp.registerUser',
     'woodyApp.profile',
@@ -89,48 +90,68 @@ app.controller('AppController', ['$scope','$http', '$state', function($scope, $h
     //$state.go('login');
     $scope.initApp = function(){
         document.addEventListener('deviceready', function(){
+
+            document.addEventListener("backbutton", function(e){
+                e.preventDefault();
+                if(window.location.hash=="#!/profile" || window.location.hash=="#!/login"){
+                    navigator.app.exitApp();
+                }else if (window.location.hash=="#!/otherProfile"){
+                    $state.go('friends');
+                }else if (window.location.hash=="#!/settings" || window.location.hash=="#!/friends" || window.location.hash=="#!/notifications"){
+                    $state.go('profile');
+                }else if (window.location.hash=="#!/editProfile"){
+                    $state.go('settings');
+                }else if (window.location.hash=="#!/registerUser"){
+                    $state.go('login');
+                }
+                else {
+                    console.log(window.location.hash);
+                    navigator.app.backHistory();
+                }
+            }, false);
+
+
             if(localStorage.getItem('usr') != null){
                 $state.go('profile');
             }else{
                 $state.go('login');
             }
+            // Enable to debug issues.
+            // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+
+            window.plugins.OneSignal
+                .startInit("37a9139e-f5c2-4b7c-885a-6c4556001b31")
+                .handleNotificationReceived(function(jsonData){
+                    console.log("Notification received:\n" + JSON.stringify(jsonData));
+                    console.log('Did I receive a notification: ' + JSON.stringify(jsonData));
+                })
+                .handleNotificationOpened(function(jsonData){
+                    console.log("Notification opened:\n" + JSON.stringify(jsonData));
+                    console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+                    console.log(jsonData.notification.payload.additionalData.notificationState);
+                    var notificationState = jsonData.notification.payload.additionalData.notificationState;
+                    switch(notificationState){
+                        case 'solicitudAmistad': $state.go('notifications');break;
+                        default: console.log("la no risa");break;
+                    }
+                })
+                .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
+
+                .endInit();
+
+            window.plugins.OneSignal.registerForPushNotifications();
+
+            window.plugins.OneSignal.getIds(
+                function(ids) {
+                    console.log('getIds: ' + JSON.stringify(ids));
+                    localStorage.setItem("deviceId",JSON.stringify(ids));
+                }
+            );
+
+            // Call syncHashedEmail anywhere in your app if you have the user's email.
+            // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
+            // window.plugins.OneSignal.syncHashedEmail(userEmail);
             navigator.splashscreen.hide();
-
         }, false);
-
-    }
-
-    /*$scope.test = function(){
-        var data = {
-            "notification":{
-                "title":"Notification title",
-                "body":"Notification body",
-                "sound":"default",
-                "click_action":"FCM_PLUGIN_ACTIVITY",
-                "icon":"fcm_push_icon"
-            },
-            "data":{
-                "param1":"value1",
-                "param2":"value2"
-            },
-            "to":"fBCNT1xXis4:APA91bFj-Y1FcBLqHGyIEL9TMicEQR2WlcGx5J2W6O8jeMq7eCtyAuX91NoeejrEO408OZBsWAcUHSPSNbV6fTbK15mkd-o_-m2RpnhfgCGbIXRnv4sX7eA55TZSLcsmyK7G3X7YbsBt",
-            "priority":"high",
-            "restricted_package_name":""
-        };
-
-        $http.post("https://fcm.googleapis.com/fcm/send", data,
-        {
-            "Content-Type" : "application/json",
-            "Authorization" : "key=AIzaSyDfDHPU2lekHU2OPQBaAyPAGImGPJJ_Hmk"
-        })
-        .then(
-            function (response) {
-                console.log(response)
-            },
-            function (response) {
-                console.log(response)
-            }
-        );
-    }*/
-
+    };
 }]);

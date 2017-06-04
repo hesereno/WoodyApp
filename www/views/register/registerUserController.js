@@ -7,10 +7,6 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
         $state.go('login');
     };
 
-    document.addEventListener("backbutton", function(){
-        $state.go('login');
-    }, false);
-
     $scope.mascota = [];
     $scope.mascotaImg = [];
 
@@ -37,9 +33,10 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
          */
         console.log("pass:" + pass);
         console.log("repass:" + repass);
-        if(pass == repass) {
-            if (num.value == ""){
-                var user = {"username": nombre, "pass": pass, "nDogs": num};
+        //if(pass == repass) {
+         //   if (num.value == ""){
+                var token = JSON.parse(localStorage.getItem("deviceId")).userId;
+                var user = {"username": nombre, "pass": pass, "nDogs": num, "token":token};
                 $rootScope.numero = user.nDogs;
                 var test = JSON.stringify(user);
                 localStorage.setItem("user", test);
@@ -81,7 +78,7 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
                         });
                 }
                 $state.go('profile');
-            }
+            /*}
             else{
                 alert("Debes tener mínimo 1 perro")
             }
@@ -89,7 +86,7 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
         else
         {
             alert("Las contraseñas no coinciden");
-        }
+        }*/
         /*
         }
         else{

@@ -18,6 +18,7 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+
         <splash density="land-hdpi" src="./www/img/splashScreen.png" />
         <splash density="land-ldpi" src="./www/img/splashScreen.png" />
         <splash density="land-mdpi" src="./www/img/splashScreen.png" />
@@ -26,12 +27,14 @@
         <splash density="port-ldpi" src="./www/img/splashScreen.png" />
         <splash density="port-mdpi" src="./www/img/splashScreen.png" />
         <splash density="port-xhdpi" src="./www/img/splashScreen.png" />
+
         <icon density="ldpi" src="./www/img/logo.png" />
         <icon density="mdpi" src="./www/img/logo.png" />
         <icon density="hdpi" src="./www/img/logo.png" />
         <icon density="xhdpi" src="./www/img/logo.png" />
         <icon density="xxhdpi" src="./www/img/logo.png" />
         <icon density="xxxhdpi" src="./www/img/logo.png" />
+
     </platform>
     <preference name="Orientation" value="portrait" />
     <preference name="SplashMaintainAspectRatio" value="false" />

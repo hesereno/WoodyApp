@@ -6,10 +6,6 @@ app.controller('notificationsController',  ['$scope', '$state', '$http', functio
         $state.go('profile');
     };
 
-    document.addEventListener("backbutton", function(){
-        $state.go('profile');
-    }, false);
-
     $scope.view = "notifications";
 
     $scope.initView = function(){

@@ -3,14 +3,11 @@ var app = angular.module('woodyApp.friends', []);
 app.controller('friendsController',  ['$scope', '$state','$http', function($scope, $state,$http){
 
     $scope.buscando = false;
+    $scope.isMyFriend = false;
 
     $scope.back = function () {
         $state.go('profile');
     };
-
-    document.addEventListener("backbutton", function(){
-        $state.go('profile');
-    }, false);
 
     $scope.getUsersByName = function(){
         var personToSearch = document.getElementById("search").value;
@@ -29,7 +26,6 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
         }else{
             $scope.buscando = false;
             console.log($scope.buscando);
-
         }
     };
 
@@ -42,10 +38,33 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
         $http.post("https://www.institutmarianao.cat/woody/getRelationship.php",data).then(
             function(response){
                 console.log(response.data);
+                console.log(userId);
+                data = {'userId':userId};
+                $http.post("https://www.institutmarianao.cat/woody/getUserToken.php",data).then(
+                    function(response){
+                        console.log(response.data);
+                        var userToken = response.data.token;
+                        var notificationObj = {
+                            contents: {en: "Tienes una solicitud de amistad de " + userData},
+                            include_player_ids: [userToken],
+                            data: {"notificationState": "solicitudAmistad"}
+                        };
+                        window.plugins.OneSignal.postNotification(notificationObj,
+                            function(successResponse) {
+                                console.log("Notification Post Success:", successResponse);
+                            },
+                            function (failedResponse) {
+                                console.log("Notification Post Failed: ", failedResponse);
+                            }
+                        );
+                    }),
+                    function(response){
+                        console.log(response);
+                    };
             },function(response){
                 console.log(response.data);
             });
-    }
+    };
 
     $scope.showFriendsList = function(){
         var userData = localStorage.getItem("usr");
@@ -59,10 +78,35 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
             },function(response){
                 console.log(response.data);
             });
-    }
+    };
 
     $scope.setUserVidited = function(userVidited){
         localStorage.setItem("userVisited", userVidited)
-    }
+    };
+
+    $scope.isFriend = function(friendName){
+        for(var i = 0; i < $scope.friends.length; i++){
+            console.log(friendName);
+            console.log($scope.friends[i].user2);
+            console.log($scope.isMyFriend);
+            if(friendName == $scope.friends[i].user2) {
+                return true;
+            }
+        }
+        return false;
+    };
+
+    $scope.unfollow = function(userVisited){
+        var userData = localStorage.getItem("usr");
+        userData = userData.substring(0, userData.indexOf(','));
+        var data = {"userId": userData,"userId2":userVisited};
+        $http.post("https://www.institutmarianao.cat/woody/deleteFriendsRelationshipById.php", data).then(
+            function(response){
+                $scope.initView();
+            },function(response){
+                console.log(response._error);
+            }
+        );
+    };
 
 }]);

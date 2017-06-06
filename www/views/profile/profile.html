@@ -1,4 +1,4 @@
-<div  ng-app="woodyApp" ng-controller="profileController" ng-init="initView()" ng-swipe-left="right()" ng-swipe-right="left()">
+<div  ng-app="woodyApp" ng-controller="profileController" ng-init="initView()" ng-swipe-right="left()">
     <div class="div-profile-header">
         <button class="pull-left col-xs-3 col-sm-3 btn btn-lg btn-left" ui-sref="friends"><i class="fa fa-users" aria-hidden="true"></i></button>
         <img src="http://www.institutmarianao.cat/woody/profileImg/{{username}}.png" ng-show="cargada" id="imagenPerfil" class="img-profile col-sm-6 col-xs-6">
@@ -14,14 +14,15 @@
         <span class="span-nombre">{{username}}</span>
     </div>
     <div class="div-mascotas div-mascotas-edit">
-        <div ng-repeat="perro in perros track by $index" test={{perro.dogName}} class="div-ind-mascota-edit" ng-click="perfilPerro">
-            <img class="col-sm-4 col-xs-4 img-mascota" id="imgProf{{$index}}" src="http://www.institutmarianao.cat/woody/profileImg/{{username}}{{perro.dogName}}.png" alt="mascota"/>
+        <div ng-repeat="perro in perros track by $index" test={{perro.nombreMascota}} class="div-ind-mascota-edit" ng-click="perfilPerro">
+            <img class="col-sm-4 col-xs-4 img-mascota" id="imgProf{{$index}}" src="http://www.institutmarianao.cat/woody/profileImg/{{username}}{{perro.nombreMascota}}.png" alt="mascota"/>
             <div class="col-sm-8 col-xs-8">
                 <div class="row">
-                    <span class="petname">{{perro.dogName}}</span>
+                    <span class="petname">{{perro.nombreMascota}}</span>
                 </div>
                 <div class="row">
-                    <span>EDAD MASCOTA</span>
+                    <span>{{perro.date}}</span><br>
+                    <span>{{perro.genero}}</span>
                     <button type="button" ng-click="avisarAmigos()" class="col-sm-4 col-xs-4 pull-right btn btn-danger btn-lg"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span></button>
                 </div>
             </div>

@@ -74,7 +74,6 @@
 
 .center-div{
     padding: 1em 0 1em 0;
-
 }
 
 .bottom-div{
@@ -140,6 +139,7 @@
 .img-profile{
     padding:0 !important;
     margin-top: 2.5%;
+    border-radius: 50%;
 }
 
 .btn-danger{
@@ -166,8 +166,22 @@
     background-color: rgba(255, 235, 157, 1);
     height: 65%;
     overflow: auto;
-    border-top: solid thin rgba(255, 235, 157, 0.5);
-    box-shadow: 0px -1px 1px rgba(255, 235, 157, 1);
+    /*border-top: solid thin rgba(255, 235, 157, 0.5);
+    box-shadow: 0px -1px 1px rgba(255, 235, 157, 1);*/
+}
+
+.div-nombre{
+    background-color: rgba(255, 235, 157, 1) !important;
+    text-align: center !important;
+    font-weight: bold !important;
+    font-size: 2em !important;
+    border-bottom: solid thin grey;
+}
+
+.span-nombre{
+    position: relative;
+    top: 50%;
+    line-height: 10%;
 }
 
 .div-ind-mascota{
@@ -181,6 +195,7 @@
 .img-mascota{
     max-height: 100%;
     max-width: 100%;
+    border-radius: 50%;
 }
 
 .btn-left{
@@ -191,6 +206,10 @@
 .btn-right{
     border-bottom-right-radius: 0 !important;
     border-top-right-radius: 0 !important;
+}
+
+.petname{
+    font-size: 1.3em;
 }
 
 /* Profile */
@@ -252,7 +271,7 @@
 
 /* Notifications */
 
-/* */
+/* Edit */
 
 .div-btn-profile{
     height: 10% !important;
@@ -266,12 +285,61 @@
     height: 55% !important;
 }
 
-.div-ind-mascota-edit{
+.div-ind-mascota-edit {
     padding-bottom: 5%;
     border-bottom: solid thin grey;
     /* border-top: solid thin grey; */
     padding-top: 5%;
     height: 40%;
+
 }
 
-/* */
+.div-user{
+    padding-top: 5%;
+}
+
+/* Edit */
+
+/* Loaders */
+
+.loader{
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid rgba(255, 235, 157, 1);
+    width: 70px;
+    height: 70px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.login-loader{
+    position: fixed;
+    left: calc(50% - 35px);
+}
+
+.edit-ltl-loader{
+    margin: 2vw 7vw;
+    position: fixed;
+    width: 20vw;
+    height: 20vw;
+}
+
+.edit-big-loader{
+    margin: calc(5.5%) calc(50% - 70px);
+    position: fixed;
+    width: 140px;
+    height: 140px;
+}
+
+
+/* Loaders */

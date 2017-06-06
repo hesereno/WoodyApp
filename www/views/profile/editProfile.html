@@ -18,17 +18,17 @@
         </button>
     </div>
     <form name="formDog" class="div-mascotas div-mascotas-edit form" ng-show="editDog">
-        <div ng-repeat="perro in perros track by $index" test={{perro.dogName}} class="div-ind-mascota-edit">
-            <img class="col-sm-4 col-xs-4 img-mascota" ng-click="openFilePicker($index)" id="imgMascota{{$index}}"  src="http://www.institutmarianao.cat/woody/profileImg/{{username}}{{perro.dogName}}.png" alt="mascota"/>
+        <div ng-repeat="perro in perros track by $index" test={{perro.nombreMascota}} class="div-ind-mascota-edit">
+            <img class="col-sm-4 col-xs-4 img-mascota" ng-click="openFilePicker($index)" id="imgMascota{{$index}}"  src="http://www.institutmarianao.cat/woody/profileImg/{{username}}{{perro.nombreMascota}}.png" alt="mascota"/>
             <!--<div class="loader edit-ltl-loader"></div>-->
             <canvas id="canvas{{$index}}" ng-hide="true"></canvas>
             <div class="col-sm-8 col-xs-8">
                 <div class="row">
-                    <span id="petname" class="petname">{{perro.dogName}}</span>
+                    <span id="petname" class="petname">{{perro.nombreMascota}}</span>
                 </div>
-                <div class="row">
+                <!--div class="row">
                     <span>EDAD MASCOTA</span>
-                </div>
+                </div-->
             </div>
         </div>
     </form>

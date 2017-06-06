@@ -47,6 +47,14 @@ module.exports = [
         "clobbers": [
             "window.plugins.k.imagecropper"
         ]
+    },
+    {
+        "id": "onesignal-cordova-plugin.OneSignal",
+        "file": "plugins/onesignal-cordova-plugin/www/OneSignal.js",
+        "pluginId": "onesignal-cordova-plugin",
+        "clobbers": [
+            "OneSignal"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -56,7 +64,9 @@ module.exports.metadata =
     "cordova-plugin-camera": "2.4.1",
     "cordova-plugin-splashscreen": "4.0.3",
     "cordova-plugin-whitelist": "1.3.2",
-    "cordova-plugin-k-imagecropper": "1.1.7"
+    "cordova-plugin-k-imagecropper": "1.1.7",
+    "onesignal-cordova-plugin": "2.1.1",
+    "cordova-plugin-crosswalk-webview": "2.3.0"
 };
 // BOTTOM OF METADATA
 });

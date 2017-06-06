@@ -1,10 +1,27 @@
 <div  ng-app="woodyApp" ng-controller="otherProfileController" ng-init="initView()" ng-swipe-right="back()">
     <div class="div-profile-header">
         <button ui-sref="friends" class="pull-left col-xs-3 col-sm-3 btn btn-lg btn-left"><i class="glyphicon glyphicon-arrow-left" aria-hidden="true"></i></button>
-        <img src="./img/person.svg" class="img-profile col-sm-6 col-xs-6">
+        <img src="http://www.institutmarianao.cat/woody/profileImg/{{userVisited}}.png" ng-show="cargada" id="imagenPerfil" class="img-profile col-sm-6 col-xs-6">
+        <div ng-hide="cargada" class="loader edit-big-loader"></div>
+        <button ng-show="userIsFriend" ng-click="unFollow(userVisited)" class="pull-right col-xs-3 col-sm-3 btn btn-lg btn-right"><i class="fa fa-user-times" aria-hidden="true"></i></button>
+        <button ng-hide="userIsFriend" ng-click="follow(userVisited)" class="pull-right col-xs-3 col-sm-3 btn btn-lg btn-right"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
     </div>
-    <div class="div-mascotas">
-        <other-profile-datos-mascota></other-profile-datos-mascota>
+    <div class="div-btn-profile div-nombre">
+        <span class="span-nombre">{{userVisited}}</span>
+    </div>
+    <div class="div-mascotas div-mascotas-edit">
+        <div ng-repeat="perro in perros" class="div-ind-mascota-edit" ng-click="perfilPerro">
+            <img class="col-sm-4 col-xs-4 img-mascota" src="http://www.institutmarianao.cat/woody/profileImg/{{userVisited}}{{perro.nombreMascota}}.png" alt="mascota"/>
+            <div class="col-sm-8 col-xs-8">
+                <div class="row">
+                    <span class="petname">{{perro.nombreMascota}}</span>
+                </div>
+                <!--<div class="row">
+                    <span>EDAD MASCOTA</span>
+                    <button type="button" class="col-sm-4 col-xs-4 pull-right btn btn-danger btn-lg"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span></button>
+                </div>-->
+            </div>
+        </div>
     </div>
 </div>
 

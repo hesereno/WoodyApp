@@ -3,8 +3,8 @@ var app = angular.module('woodyApp.notifications', []);
 app.controller('notificationsController',  ['$scope', '$state', '$http', function($scope, $state, $http){
 
     $scope.back = function () {
-        $state.go("profile");
-    }
+        $state.go('profile');
+    };
 
     $scope.view = "notifications";
 

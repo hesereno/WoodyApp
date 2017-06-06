@@ -3,13 +3,14 @@ var app = angular.module('woodyApp.profile', [
 
 ]);
 
-app.controller('profileController', ['$scope', '$http', '$state', function($scope, $http, $state){
+app.controller('profileController', ['$scope', '$http', '$state', 'ngDialog', function($scope, $http, $state, ngDialog){
 
 
     $scope.initView= function(){
         var username = localStorage.getItem('usr');
         var coma = username.indexOf(',');
 
+        $scope.cargada = false;
         $scope.username = username.substring(0, coma);
 
         $http.get('https://www.institutmarianao.cat/woody/profileInfo.php?username='+ $scope.username).
@@ -20,15 +21,24 @@ app.controller('profileController', ['$scope', '$http', '$state', function($scop
                 response.data[i] = JSON.parse(string);
             }
             $scope.perros = response.data;
-            console.log($scope.perros);
-            console.log($scope.perros[0].dogName);
-            console.log(response);
         });
 
+        var imgPerfil = document.getElementById('imagenPerfil');
+
+        imgPerfil.onload = function () {
+            $scope.cargada = true;
+        };
+
+        for($scope.perro in $scope.perros){
+           var perro = document.getElementById('imgProf' + $scope.perros.indexOf($scope.perro));
+           perro.onload = function () {
+
+           }
+
+        }
+
         $scope.checkNotifications();
-        document.addEventListener("backbutton", function(){
-            navigator.app.exitApp();
-        }, false);
+
     };
 
     $scope.checkNotifications = function(){
@@ -40,7 +50,6 @@ app.controller('profileController', ['$scope', '$http', '$state', function($scop
             function(response){
                 console.log(response.data);
                 if(response.data == 0){
-                    //ESTO ES VA A FALSE!
                     $scope.notifications = false;
                 }else{
                     $scope.numNotif = response.data;
@@ -51,13 +60,75 @@ app.controller('profileController', ['$scope', '$http', '$state', function($scop
             });
     };
 
-
-    $scope.right = function () {
-        $state.go("settings")
-    };
-
     $scope.left = function () {
         $state.go("friends")
+    };
+
+    $scope.avisarAmigos = function(){
+        var data = {'userId': $scope.username};
+        $http.post("https://www.institutmarianao.cat/woody/getFriends.php",data).then(
+            function(response){
+                console.log(response.data);
+                var friends = response.data;
+                for(var i = 0; i < friends.length; i++){
+                    console.log("Hector:" + friends[i].user2);
+                    var data = {'userId' : friends[i].user2};
+                    $http.post("https://www.institutmarianao.cat/woody/getUserToken.php",data).then(
+                        function(response){
+                            console.log(response.data);
+                            var userToken = response.data.token;
+                            var notificationObj = {
+                                contents: {en: "Socorro se ha perdido un perro "},
+                                include_player_ids: [userToken],
+                                data: {"notificationState": "solicitudAmistad"}
+                            };
+                            window.plugins.OneSignal.postNotification(notificationObj,
+                                function(successResponse) {
+                                    console.log("Notification Post Success:", successResponse);
+                                },
+                                function (failedResponse) {
+                                    console.log("Notification Post Failed: ", failedResponse);
+                                }
+                            );
+                        },function(response){
+                            console.log(response.data);
+                        });
+                }
+            },function(response){
+                console.log(response.data);
+            });
+    };
+
+    $scope.logOut = function () {
+        $scope.userData = localStorage.getItem("usr").substring(0, localStorage.getItem("usr").indexOf(','));
+        $http.post("http://www.institutmarianao.cat/woody/deleteDeviceId.php",{'userId':$scope.userData}).then(
+            function(response){
+                console.log("succed");
+                var btnedit = document.getElementById('btnedit');
+                btnedit.disabled = true;
+                var btnlogout = document.getElementById('btnlogout');
+                btnlogout.disabled = true;
+                localStorage.removeItem("usr");
+                $state.go("login");
+            },function(response){
+                console.log("error");
+                alert("Error inesperado");
+            }
+        );
+    };
+
+    $scope.goEditProfile = function () {
+        $state.go("editProfile");
+    };
+
+    $scope.openSettings = function(){
+        ngDialog.open({
+            template: './views/settings/settings.html',
+            id: 'settingsDialog',
+            showClose: false,
+            width: '80%',
+            height: '80%'
+        });
     };
 
 }]);

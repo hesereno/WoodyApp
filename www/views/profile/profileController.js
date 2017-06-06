@@ -29,7 +29,6 @@ app.controller('profileController', ['$scope', '$http', '$state', 'ngDialog', fu
             $scope.cargada = true;
         };
 
-        /* MI INTENTO */
         for($scope.perro in $scope.perros){
            var perro = document.getElementById('imgProf' + $scope.perros.indexOf($scope.perro));
            perro.onload = function () {
@@ -59,10 +58,6 @@ app.controller('profileController', ['$scope', '$http', '$state', 'ngDialog', fu
             },function(response){
                 console.log(response.data);
             });
-    };
-
-    $scope.right = function () {
-        $state.go("settings")
     };
 
     $scope.left = function () {

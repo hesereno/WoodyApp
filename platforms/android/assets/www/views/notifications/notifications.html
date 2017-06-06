@@ -1,7 +1,7 @@
 <div ng-app="woodyApp" ng-controller="notificationsController" ng-init="initView()" ng-swipe-right="back()">
     <div class="row-centro">
         <div class="div-ind-notification" ng-repeat="notification in notifications track by $index">
-            <img class="col-sm-4 col-xs-4 img-mascota" src="./img/image.jpg" alt="persona">
+            <img class="col-sm-4 col-xs-4 img-mascota" src="http://www.institutmarianao.cat/woody/profileImg/{{notification.user1}}.png" alt="persona">
             <div class="col-sm-8 col-xs-8">
                 <div class="row">
                     <span>Solicitud de amistad de: {{notification.user1}}</span>

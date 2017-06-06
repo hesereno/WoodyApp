@@ -8,7 +8,8 @@ app.controller('settingsController',  ['$scope', '$state', function($scope, $sta
     }
 
     $scope.back = function () {
-        $state.go("profile")
+        $state.go("profile");
+        ngDialog.close();
     };
     
 }]);

@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 var app = angular.module('woodyApp.registerUser', []);
 
 app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$http', function($scope, $rootScope, $state, $http){
@@ -26,6 +26,7 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
         var pass = document.getElementById("password").value;
         var repass = document.getElementById("rePassword").value;
         var num = document.getElementById("nPerros").value;
+
         var nombre = document.getElementById("nombre").value;
         var apellidos = document.getElementById("apellidos").value;
 

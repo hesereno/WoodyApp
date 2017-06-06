@@ -18,16 +18,19 @@
         </button>
     </div>
     <form name="formDog" class="div-mascotas div-mascotas-edit form" ng-show="editDog">
-        <div ng-repeat="perro in perros track by $index" test={{perro.dogName}} class="div-ind-mascota-edit">
-            <img class="col-sm-4 col-xs-4 img-mascota" ng-click="openFilePicker($index)" id="imgMascota{{$index}}"  src="http://www.institutmarianao.cat/woody/profileImg/{{username}}{{perro.dogName}}.png" alt="mascota"/>
+        <div ng-repeat="perro in perros track by $index" test={{perro.nombreMascota}} class="div-ind-mascota-edit">
+            <img class="col-sm-4 col-xs-4 img-mascota" ng-click="openFilePicker($index)" id="imgMascota{{$index}}"  src="http://www.institutmarianao.cat/woody/profileImg/{{username}}{{perro.nombreMascota}}.png" alt="mascota"/>
             <!--<div class="loader edit-ltl-loader"></div>-->
             <canvas id="canvas{{$index}}" ng-hide="true"></canvas>
             <div class="col-sm-8 col-xs-8">
                 <div class="row">
-                    <span id="petname" class="petname">{{perro.dogName}}</span>
+                    <span id="petname" class="petname">{{perro.nombreMascota}}</span>
                 </div>
                 <div class="row">
-                    <span>EDAD MASCOTA</span>
+                    <input type="date" value="{{perro.date}}" id="newDate">
+                </div>
+                <div class="row">
+                    <span>{{perro.genero}}</span>
                 </div>
             </div>
         </div>
@@ -39,18 +42,26 @@
             <canvas id="canvas" ng-hide="true"></canvas>
             <div class="col-sm-8 col-xs-8">
                 <div class="row">
-                    <span>Contraseña</span>
-                    <input type="password" id="antPassword" class="form-control input-login" required="required" placeholder="Password" aria-describedby="basic-addon1">
+                    <span>Nombre</span>
+                    <input value="{{userData.nombre}}" type="text" id="name" class="form-control input-login" required="required" placeholder="" aria-describedby="basic-addon1">
+                </div>
+                <div class="row">
+                    <span>Apellidos</span>
+                    <input value="{{userData.apellidos}}" type="text" id="apellidos" class="form-control input-login" required="required" placeholder="" aria-describedby="basic-addon1">
+                </div>
+                <div class="row">
+                    <span>Contraseña actual</span>
+                    <input type="password" id="antPassword" class="form-control input-login" required="required" placeholder="" aria-describedby="basic-addon1">
                 </div>
                 <br>
                 <div class="row">
                     <span>Contraseña nueva</span>
-                    <input type="password" id="password" class="form-control input-login" required="required" placeholder="New Password" aria-describedby="basic-addon1">
+                    <input type="password" id="password" class="form-control input-login" required="required" placeholder="" aria-describedby="basic-addon1">
                 </div>
                 <br>
                 <div class="row">
                     <span>Confirma tu nueva contraseña</span>
-                    <input type="password" id="rePassword" class="form-control input-login" required="required" placeholder="Confirm Password" aria-describedby="basic-addon1">
+                    <input type="password" id="rePassword" class="form-control input-login" required="required" placeholder="" aria-describedby="basic-addon1">
                 </div>
             </div>
         </div>

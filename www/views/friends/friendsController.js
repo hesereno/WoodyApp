@@ -19,6 +19,9 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
                 function(response){
                     console.log(response.data);
                     $scope.personas = response.data;
+                    if($scope.personas === "failed"){
+                        $scope.personas = new Array(0);
+                    }
                 },
                 function(response){
                     console.log(response);

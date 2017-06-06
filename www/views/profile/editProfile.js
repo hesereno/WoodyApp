@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 var app = angular.module('woodyApp.editProfile', [
 
 ]);
@@ -44,6 +44,8 @@ app.controller('editProfileController', ['$scope', '$http', '$state', function($
         imgPerfil.onload = function () {
             $scope.cargada = true;
         }
+
+        $scope.getUserInfo($scope.username);
     };
 
     $scope.guardarCambios = function(){
@@ -51,8 +53,23 @@ app.controller('editProfileController', ['$scope', '$http', '$state', function($
         if($scope.editDog){
             var nombreMascota = document.getElementById('petname').value;
 
+
         }else{
+            var nombreUser = document.getElementById('name').value;
+            var apellidosUser = document.getElementById('apellidos').value;
+            var antPassword = document.getElementById('antPassword').value;
             var nuevaPass = document.getElementById('password').value;
+            var rePassword = document.getElementById('rePassword').value;
+
+            if(antPassword > 0 && $scope.passwordIsOk(antPassword, $scope.username) == "succeed"){
+                if(nuevaPass != rePassword){
+                    alert("Las contraseñas no coinciden");
+                }else{
+                    $scope.updateUserData(nuevaPass,  $scope.username, nombreUser, apellidosUser);
+                }
+            }else{
+                $scope.updateUserData("",  $scope.username, nombreUser, apellidosUser);
+            }
         }
     };
 
@@ -105,7 +122,6 @@ app.controller('editProfileController', ['$scope', '$http', '$state', function($
                     var posComa = dataUrl.indexOf(',');
                     dataUrl = dataUrl.substring(posComa + 1);
                     $scope.mascotaImg = dataUrl;
-                    console.log(dataUrl);
 
                     if($scope.editDog){
                         var mascota = document.getElementById("petname").textContent;
@@ -161,8 +177,46 @@ app.controller('editProfileController', ['$scope', '$http', '$state', function($
             mediaType: Camera.MediaType.PICTURE,
             allowEdit: false,
             correctOrientation: true  //Corrects Android orientation quirks
-        }
+        };
         return options;
     };
+
+    $scope.getUserInfo = function(userId){
+        var data = {"userId":userId};
+        $http.post("https://www.institutmarianao.cat/woody/getUserInfo.php", data).then(
+            function(response){
+                console.log(response.data);
+                $scope.userData = response.data;
+            },
+            function(response){
+                console.log("ERROR: " + response.data);
+            });
+    }
+
+    $scope.passwordIsOk = function(pass, userId){
+        var data = {"userId":userId, "pass":pass};
+        $http.post("https://www.institutmarianao.cat/woody/checkPass.php", data).then(
+            function(response){
+                console.log(response.data);
+                return response.data;
+            },
+            function(response){
+                console.log("ERROR: " + response.data);
+                return "error";
+            });
+    }
+
+    $scope.updateUserData = function(pass, userId, nombre, apellidos){
+        var data = {"userId":userId, "pass":pass, "nombre":nombre, "apellidos":apellidos};
+        $http.post("https://www.institutmarianao.cat/woody/updateUserData.php", data).then(
+            function(response){
+                console.log(response.data);
+            },
+            function(response){
+                console.log("ERROR: " + response.data);
+                return "error";
+            });
+    }
+
 
 }]);

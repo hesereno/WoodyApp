@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 var app = angular.module('woodyApp.profile', [
 
 ]);
@@ -10,6 +10,7 @@ app.controller('profileController', ['$scope', '$http', '$state', 'ngDialog', fu
         var username = localStorage.getItem('usr');
         var coma = username.indexOf(',');
 
+        $scope.cargada = false;
         $scope.username = username.substring(0, coma);
 
         $http.get('https://www.institutmarianao.cat/woody/profileInfo.php?username='+ $scope.username).
@@ -22,10 +23,23 @@ app.controller('profileController', ['$scope', '$http', '$state', 'ngDialog', fu
             $scope.perros = response.data;
         });
 
+        var imgPerfil = document.getElementById('imagenPerfil');
+
+        imgPerfil.onload = function () {
+            $scope.cargada = true;
+        };
+
+        /* MI INTENTO */
+        for($scope.perro in $scope.perros){
+           var perro = document.getElementById('imgProf' + $scope.perros.indexOf($scope.perro));
+           perro.onload = function () {
+
+           }
+
+        }
+
         $scope.checkNotifications();
-        document.addEventListener("backbutton", function(){
-            navigator.app.exitApp();
-        }, false);
+
     };
 
     $scope.checkNotifications = function(){
@@ -37,7 +51,6 @@ app.controller('profileController', ['$scope', '$http', '$state', 'ngDialog', fu
             function(response){
                 console.log(response.data);
                 if(response.data == 0){
-                    //ESTO ES VA A FALSE!
                     $scope.notifications = false;
                 }else{
                     $scope.numNotif = response.data;
@@ -47,7 +60,6 @@ app.controller('profileController', ['$scope', '$http', '$state', 'ngDialog', fu
                 console.log(response.data);
             });
     };
-
 
     $scope.right = function () {
         $state.go("settings")
@@ -97,6 +109,10 @@ app.controller('profileController', ['$scope', '$http', '$state', 'ngDialog', fu
         $http.post("http://www.institutmarianao.cat/woody/deleteDeviceId.php",{'userId':$scope.userData}).then(
             function(response){
                 console.log("succed");
+                var btnedit = document.getElementById('btnedit');
+                btnedit.disabled = true;
+                var btnlogout = document.getElementById('btnlogout');
+                btnlogout.disabled = true;
                 localStorage.removeItem("usr");
                 $state.go("login");
             },function(response){
@@ -106,13 +122,14 @@ app.controller('profileController', ['$scope', '$http', '$state', 'ngDialog', fu
         );
     };
 
-    $scope.back = function () {
-        $state.go("profile")
+    $scope.goEditProfile = function () {
+        $state.go("editProfile");
     };
 
     $scope.openSettings = function(){
         ngDialog.open({
             template: './views/settings/settings.html',
+            id: 'settingsDialog',
             showClose: false,
             width: '80%',
             height: '80%'

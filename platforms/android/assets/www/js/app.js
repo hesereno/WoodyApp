@@ -2,6 +2,7 @@
 var app = angular.module('woodyApp', [
     'ui.router',
     'ngTouch',
+    'ngDialog',
     'woodyApp.login',
     'woodyApp.registerUser',
     'woodyApp.profile',
@@ -9,8 +10,6 @@ var app = angular.module('woodyApp', [
     'woodyApp.friends',
     'woodyApp.otherProfile',
     'woodyApp.notifications',
-    'angular-md5',
-    'ngDialog',
     'woodyApp.editProfile'
 ]);
 
@@ -91,6 +90,27 @@ app.controller('AppController', ['$scope','$http', '$state', function($scope, $h
     //$state.go('login');
     $scope.initApp = function(){
         document.addEventListener('deviceready', function(){
+
+            document.addEventListener("backbutton", function(e){
+                e.preventDefault();
+                if(window.location.hash=="#!/profile" || window.location.hash=="#!/login"){
+                    navigator.app.exitApp();
+                }else if (window.location.hash=="#!/otherProfile"){
+                    $state.go('friends');
+                }else if (window.location.hash=="#!/settings" || window.location.hash=="#!/friends" || window.location.hash=="#!/notifications"){
+                    $state.go('profile');
+                }else if (window.location.hash=="#!/editProfile"){
+                    $state.go('settings');
+                }else if (window.location.hash=="#!/registerUser"){
+                    $state.go('login');
+                }
+                else {
+                    console.log(window.location.hash);
+                    navigator.app.backHistory();
+                }
+            }, false);
+
+
             if(localStorage.getItem('usr') != null){
                 $state.go('profile');
             }else{

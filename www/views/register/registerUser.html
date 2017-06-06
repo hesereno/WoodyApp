@@ -1,19 +1,21 @@
 <div ng-app="woodyApp" ng-controller="registerUserController" ng-swipe-right="back()">
     <!--<div class="decoradoTop"></div>-->
     <div class="row-centro">
+        <p>Registrate</p>
         <form class="col-xs-offset-1 col-sm-offset-1 col-sm-11 col-xs-11 form-user" name="loginForm" method="post">
             <div class="row">
                 <span>Nombre de usuario</span>
-                <input type="text" id="username" class="form-control input-login " required="required" placeholder="Nombre de usuario" aria-describedby="basic-addon1">
+                <input type="text" id="username" class="form-control input-login " required="required" placeholder="" aria-describedby="basic-addon1">
             </div>
             <br>
             <div class="row">
                 <span>Nombre</span>
-                <input type="text" id="nombre" class="form-control input-login " required="required" placeholder="Nombre" aria-describedby="basic-addon1">
+                <input type="text" id="nombre" class="form-control input-login " required="required" placeholder="" aria-describedby="basic-addon1">
             </div>
+            <br>
             <div class="row">
-                <span>Apellido</span>
-                <input type="text" id="apellidos" class="form-control input-login " required="required" placeholder="Nombre" aria-describedby="basic-addon1">
+                <span>Apellidos</span>
+                <input type="text" id="apellidos" class="form-control input-login " required="required" placeholder="" aria-describedby="basic-addon1">
             </div>
             <br>
             <div class="row">
@@ -23,12 +25,12 @@
             <br>
             <div class="row">
                 <span>Confirma tu contraseña</span>
-                <input type="password" id="rePassword" class="form-control input-login" required="required" placeholder="Confirma contraseña" aria-describedby="basic-addon1">
+                <input type="password" id="rePassword" class="form-control input-login" required="required" placeholder="Confirmar contraseña" aria-describedby="basic-addon1">
             </div>
             <br>
             <div class="row">
                 <span>Cuantos perros tienes?</span>
-                <input type="number" id="nPerros" min="1" max="99" ng-model="myVar" class="form-control input-login" ng-change="changeNumber()" required="required" placeholder="2" aria-describedby="basic-addon1">
+                <input type="number" id="nPerros" min="1" max="99" ng-model="myVar" class="form-control input-login" ng-change="changeNumber()" required="required" aria-describedby="basic-addon1">
             </div>
             <br>
         </form>
@@ -40,26 +42,30 @@
                 <span>Nombre de tu mascota</span>
                 <input type="text" class="petname form-control input-login" placeholder="Pet name" aria-describedby="basic-addon1">
             </div>
-            <div class="row">
-                <span>Sexo</span>
-                <span>Hembra</span><input type="radio" name="sexo" checked class="petname form-control input-login hembra" aria-describedby="basic-addon1">
-                <span>Macho</span><input type="radio" name="sexo" class="petname form-control input-login macho" aria-describedby="basic-addon1">
-            </div>
             <br>
             <div class="row">
                 <span>Fecha de nacimiento</span>
                 <input type="date" placeholder="Date" class="form-control date">
             </div>
             <br>
+            <div class="row control control-radio">
+                <span>Sexo</span><br>
+                <p>
+                    <input type="radio" name="sexo" checked class="hembra" aria-describedby="basic-addon1"><span>Hembra</span>
+                    <input type="radio" name="sexo" class="macho" aria-describedby="basic-addon1"><span>Macho</span>
+                </p>
+            </div>
+            <br>
             <div class="row">
                 <span>Foto de tu mascota</span><br>
                 <input type="button" class="imgInp col-xs-offset-5 col-sm-offset-5 col-xs-2 col-sm-2 btn btn-lg" name="photo" valule="photo" ng-click="openFilePicker($index)"><br>
-                <img class="imagen col-xs-offset-1 col-sm-offset-1 col-xs-10 col-sm-10" ng-click="openFilePicker($index)" id="imagen{{$index}}">
+                <img class="imagen col-xs-offset-1 col-sm-offset-1 col-xs-10 col-sm-10 img-mascota" ng-click="openFilePicker($index)" id="imagen{{$index}}">
                 <canvas ng-show="false" class="imagen col-xs-4 col-sm-4" id="canvas{{$index}}"/>
+                <!-- image preview -->
             </div>
         </form>
         <div class="row">
-            <button type="submit" ng-click="registre()" class="col-xs-2 col-sm-2 pull-right btn btn-lg btn-bottom"><span class="glyphicon glyphicon-arrow-right"></span></button><br>
+            <button type="submit" ng-click="registre()" class="col-xs-2 col-sm-2 pull-right btn btn-lg btn-bottom">Registrarse</button><br>
         </div>
     </div>
     <!--<div class="decoradobottom"></div>-->

@@ -5,7 +5,7 @@
     </form>
     <div ng-hide="buscando" class="div-friend" ui-sref="otherProfile">
         <div class="div-ind-notification" ng-repeat="friend in friends track by $index" ng-click="setUserVidited(friend.user2)">
-            <img class="col-sm-4 col-xs-4 img-mascota" src="http://www.institutmarianao.cat/woody/profileImg/{{friend.user2}}.png" class="img-profile col-sm-6 col-xs-6" alt="persona"/>
+            <img class="col-sm-4 col-xs-4 img-mascota" id="imgFriends{{$index}}" src="http://www.institutmarianao.cat/woody/profileImg/{{friend.user2}}.png" class="img-profile col-sm-6 col-xs-6" alt="persona"/>
             <div class="col-sm-8 col-xs-8">
                 <div class="row">
                     <span ui-sref="otherProfile">{{friend.user2}}</span>
@@ -15,12 +15,12 @@
     </div>
     <div ng-show="buscando" class="search div-friend" ui-sref="otherProfile">
         <div ng-repeat="persona in personas track by $index" class="div-ind-notification" ng-click="setUserVidited(persona.username)">
-            <img class="col-sm-4 col-xs-4 img-mascota" src="http://www.institutmarianao.cat/woody/profileImg/{{persona.username}}.png" alt="persona"/>
+            <img class="col-sm-4 col-xs-4 img-mascota" id="imgSearch{{$index}}" src="http://www.institutmarianao.cat/woody/profileImg/{{persona.username}}.png" alt="persona"/>
             <div class="col-sm-8 col-xs-8">
                 <div class="row">
                     <span ui-sref="otherProfile">{{persona.username}}</span>
-                    <button ng-show="isFriend(persona.username)" type="button" ng-click="unfollow(persona.username)" class="col-sm-4 col-xs-4 pull-right btn btn-success btn-lg">unfollow</button>
-                    <button ng-hide="isFriend(persona.username)" type="button" ng-click="gestionarAmistad(persona.username)" class="col-sm-4 col-xs-4 pull-right btn btn-success btn-lg">follow</i></button>
+                    <button ng-show="isFriend(persona.username)" type="button" ng-click="unfollow(persona.username)" class="col-sm-4 col-xs-4 pull-right btn btn-success btn-lg"><i class="fa fa-user-times" aria-hidden="true"></i></button>
+                    <button ng-hide="isFriend(persona.username)" type="button" ng-click="gestionarAmistad(persona.username)" class="col-sm-4 col-xs-4 pull-right btn btn-success btn-lg"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>

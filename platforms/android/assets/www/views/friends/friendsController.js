@@ -9,10 +9,6 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
         $state.go('profile');
     };
 
-    document.addEventListener("backbutton", function(){
-        $state.go('profile');
-    }, false);
-
     $scope.getUsersByName = function(){
         var personToSearch = document.getElementById("search").value;
         if(personToSearch.length > 0){
@@ -30,13 +26,14 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
         }else{
             $scope.buscando = false;
             console.log($scope.buscando);
-
         }
     };
 
     $scope.gestionarAmistad = function(userId){
         var userData = localStorage.getItem("usr");
         userData = userData.substring(0, userData.indexOf(','));
+        console.log(userData);
+        console.log(userId);
         var data = {"userId":userData, "friend":userId};
         $http.post("https://www.institutmarianao.cat/woody/getRelationship.php",data).then(
             function(response){
@@ -97,7 +94,7 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
             }
         }
         return false;
-    }
+    };
 
     $scope.unfollow = function(userVisited){
         var userData = localStorage.getItem("usr");
@@ -111,4 +108,5 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
             }
         );
     };
+
 }]);

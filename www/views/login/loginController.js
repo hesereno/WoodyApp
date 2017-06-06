@@ -2,16 +2,12 @@
 var app = angular.module('woodyApp.login', []);
 
 
-app.controller('LoginController', ['$scope', '$http', '$state', 'md5', function($scope, $http, $state, md5){
+app.controller('LoginController', ['$scope', '$http', '$state', function($scope, $http, $state){
 
     $scope.title = "Woody";
+    $scope.loading = false;
 
-    $scope.initView = function(){
-        document.addEventListener("backbutton", function(){
-            navigator.app.exitApp();
-        }, false);
-        $scope.loading = false;
-    };
+    $scope.initView = function(){};
 
     $scope.checkLogin = function(){
         console.log("entra");
@@ -24,23 +20,27 @@ app.controller('LoginController', ['$scope', '$http', '$state', 'md5', function(
         then(function(response) {
             var result = response.data;
             console.log(result);
-            if(result === "succeed"){
-                    localStorage.setItem("usr", username + ",true");
-                    $scope.userData = localStorage.getItem("usr").substring(0, localStorage.getItem("usr").indexOf(','));
-                    $http.post("http://www.institutmarianao.cat/woody/addDeviceId.php",{'userId':$scope.userData,'token':token}).then(
-                        function(response){
-                            console.log("succed");
-                            $scope.loading = false;
-                            $state.go("profile");
-                        },function(response){
-                            console.log("error");
-                            alert("Error inesperado");
-                        }
-                    );
-            }else{
+
+            if (result === "succeed") {
+                localStorage.setItem("usr", username + ",true");
+                $scope.userData = localStorage.getItem("usr").substring(0, localStorage.getItem("usr").indexOf(','));
+                $http.post("http://www.institutmarianao.cat/woody/addDeviceId.php", {
+                    'userId': $scope.userData,
+                    'token': token
+                }).then(
+                    function (response) {
+                        console.log("succeed");
+                        $scope.loading = false;
+                        $state.go("profile");
+                    }, function (response) {
+                        console.log("error");
+                        alert("Error inesperado");
+                    }
+                );
+            } else {
                 $scope.loading = false;
                 alert("Authentication failed");
             }
         });
-    }
+    };
 }]);

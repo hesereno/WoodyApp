@@ -8,14 +8,13 @@ app.controller('otherProfileController',  ['$scope', '$state', '$http', function
         $state.go('friends');
     };
 
-    document.addEventListener("backbutton", function(){
-        $state.go('friends');
-    }, false);
-
     $scope.initView = function(){
         $scope.userVisited = localStorage.getItem('userVisited');
+
+        $scope.cargada = false;
         $scope.actualUser = localStorage.getItem("usr");
         $scope.actualUser = $scope.actualUser.substring(0, $scope.actualUser.indexOf(','))
+
         $http.get('https://www.institutmarianao.cat/woody/profileInfo.php?username='+ $scope.userVisited).
         then(function(response) {
             console.log(response.data);
@@ -26,8 +25,14 @@ app.controller('otherProfileController',  ['$scope', '$state', '$http', function
             $scope.perros = response.data;
             console.log(response.data);
         });
+
         $scope.isFriend();
 
+        var imgPerfil = document.getElementById('imagenPerfil');
+
+        imgPerfil.onload = function () {
+            $scope.cargada = true;
+        };
     };
 
     $scope.follow = function(userId){

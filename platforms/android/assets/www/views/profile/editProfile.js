@@ -13,21 +13,18 @@ app.controller('editProfileController', ['$scope', '$http', '$state', function($
 
     $scope.buttonUser = function(){
         $scope.editDog = false;
-    }
+    };
 
     $scope.left = function () {
         $state.go("profile")
     };
-
-    document.addEventListener("backbutton", function(){
-        $state.go('profile');
-    }, false);
 
     $scope.initView= function(){
         var username = localStorage.getItem('usr');
         var coma = username.indexOf(',');
 
         $scope.username = username.substring(0, coma);
+        $scope.cargada = false;
 
         $http.get('https://www.institutmarianao.cat/woody/profileInfo.php?username='+ $scope.username).
         then(function(response) {
@@ -41,6 +38,12 @@ app.controller('editProfileController', ['$scope', '$http', '$state', function($
             console.log($scope.perros[0].dogName);
             console.log(response);
         });
+
+        var imgPerfil = document.getElementById('imagenPerfil');
+
+        imgPerfil.onload = function () {
+            $scope.cargada = true;
+        }
     };
 
     $scope.guardarCambios = function(){
@@ -50,7 +53,6 @@ app.controller('editProfileController', ['$scope', '$http', '$state', function($
 
         }else{
             var nuevaPass = document.getElementById('password').value;
-
         }
     };
 
@@ -113,7 +115,7 @@ app.controller('editProfileController', ['$scope', '$http', '$state', function($
                     var data = {"img":$scope.mascotaImg, "username":$scope.username, "animal":mascota};
                     $http.post("https://www.institutmarianao.cat/woody/uploadFile.php",data).then(
                         function(response){
-                            console.log(response);
+                            //console.log(response);
                         },function(response){
                             console.log(response);
                         });

@@ -1,15 +1,11 @@
-'use strict'
+'use strict';
 var app = angular.module('woodyApp.registerUser', []);
 
-app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$http', 'md5', function($scope, $rootScope, $state, $http, md5){
+app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$http', function($scope, $rootScope, $state, $http){
 
     $scope.back = function () {
         $state.go('login');
     };
-
-    document.addEventListener("backbutton", function(){
-        $state.go('login');
-    }, false);
 
     $scope.mascota = [];
     $scope.mascotaImg = [];
@@ -29,49 +25,67 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
         var username = document.getElementById("username").value;
         var pass = document.getElementById("password").value;
         var repass = document.getElementById("rePassword").value;
-        var nombre = document.getElementById("nombre").value;
-        var nombre = document.getElementById("nombre").value;
         var num = document.getElementById("nPerros").value;
-        var token = JSON.parse(localStorage.getItem("deviceId")).userId;
-        var user = {"username": username, "pass": pass, "nDogs": num, "token":token};
-        $rootScope.numero = user.nDogs;
-        var test = JSON.stringify(user);
-        localStorage.setItem("user",test);
-        console.log(test);
+        var nombre = document.getElementById("nombre").value;
+        var apellidos = document.getElementById("apellidos").value;
 
-        for(var i = 0; i < num; i++){
-            var mascotaName = document.getElementsByClassName("petname")[i].value;
-            var fecha = document.getElementsByClassName("date")[i].value;
-            $scope.mascota.push({"petname":mascotaName, "date":fecha});
+        if(checkUser(username)){
+            alert("Este nombre de usuario esta en uso");
+        }else if(!checkPassword(pass, repass)){
+            alert("La contraseña tiene que tener mas de 6 caracteres y coincidir");
+        }else if(checkSomethingNull()){
+            alert("Rellena todos los campos");
+        }else{
+            var token = JSON.parse(localStorage.getItem("deviceId")).userId;
+            var user = {"username": username, "pass": pass, "nDogs": num, "token":token, "nombre":nombre, "apellidos":apellidos};
+            $rootScope.numero = user.nDogs;
+            var test = JSON.stringify(user);
+            localStorage.setItem("user", test);
+            console.log(test);
+
+            for (var i = 0; i < num; i++) {
+                var mascotaName = document.getElementsByClassName("petname")[i].value;
+                var fecha = document.getElementsByClassName("date")[i].value;
+                var sexo = document.getElementsByClassName("macho")[i].checked;
+                if(sexo){
+                    sexo = "M";
+                }else{
+                    sexo = "H";
+                }
+                $scope.mascota.push({"petname": mascotaName, "date": fecha, "sexo":sexo});
+            }
+            var userData = JSON.parse(test);
+            var data = [];
+            data[0] = $scope.mascota;
+            data[1] = userData;
+            //console.log(JSON.stringify(data));
+
+            $http.post('https://www.institutmarianao.cat/woody/registroUsuario.php', data).then(function (response) {
+                console.log(response.data);
+                console.log(response);
+
+            }, function (response) {
+                console.log(response.data);
+                console.log(response);
+            });
+
+            localStorage.setItem("usr", user.username + ",true");
+
+            for (i = 0; i < $scope.mascotaImg.length; i++) {
+                var data = {
+                    "img": $scope.mascotaImg[i],
+                    "username": user.username,
+                    "animal": $scope.mascota[i].petname
+                };
+                $http.post("https://www.institutmarianao.cat/woody/uploadFile.php", data).then(
+                    function (response) {
+                        console.log(response);
+                    }, function (response) {
+                        console.log(response);
+                    });
+            }
+            $state.go('profile');
         }
-        var userData = JSON.parse(test);
-        var data = [];
-        data[0] = $scope.mascota;
-        data[1] = userData;
-        //console.log(JSON.stringify(data));
-
-        $http.post('https://www.institutmarianao.cat/woody/loginMascota.php', data).
-        then(function(response) {
-            console.log(response.data);
-            console.log(response);
-
-        },function(response) {
-            console.log(response.data);
-            console.log(response);
-        });
-
-        localStorage.setItem("usr", user.username + ",true");
-
-        for(i = 0; i < $scope.mascotaImg.length; i++){
-            var data = {"img":$scope.mascotaImg[i], "username":user.username, "animal":$scope.mascota[i].petname};
-            $http.post("https://www.institutmarianao.cat/woody/uploadFile.php",data).then(
-                function(response){
-                    console.log(response);
-                },function(response){
-                    console.log(response);
-                });
-        }
-
     };
 
     $scope.openFilePicker = function(selection) {
@@ -159,5 +173,59 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
         }
         return options;
     };
+
+    function checkUser(userId){
+        var data = {"userId":userId};
+        $http.post('https://www.institutmarianao.cat/woody/getUserToken.php', data).then(function (response) {
+            console.log(response.data);
+            console.log(response);
+            $scope.result = response.data;
+
+
+        }, function (response) {
+            console.log(response.data);
+            console.log(response);
+        });
+        if($scope.result == "failed"){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    function checkPassword(pass, repass){
+        if(pass == repass && pass.length > 6){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function checkSomethingNull() {
+        var username = document.getElementById("username").value;
+        var pass = document.getElementById("password").value;
+        var repass = document.getElementById("rePassword").value;
+        var num = document.getElementById("nPerros").value;
+        var nombre = document.getElementById("nombre").value;
+        var apellidos = document.getElementById("apellidos").value;
+        var response = false;
+        if (username == "" || pass == "" || num == "" || nombre == "" || apellidos == "") {
+            response = true;
+        }
+
+        for (var i = 0; i < num; i++) {
+
+            var mascotaName = document.getElementsByClassName("petname")[i].value;
+            var fecha = document.getElementsByClassName("date")[i].value;
+            if (mascotaName == "" || fecha == "") {
+                response = true;
+            }
+        }
+        if (response) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }]);

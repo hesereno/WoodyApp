@@ -1,7 +1,7 @@
 'use strict'
 var app = angular.module('woodyApp.registerUser', []);
 
-app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$http', function($scope, $rootScope, $state, $http){
+app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$http', 'ngDialog', function($scope, $rootScope, $state, $http, ngDialog){
 
     $scope.back = function () {
         $state.go('login');
@@ -21,6 +21,16 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
     };
 
     $scope.registre = function() {
+        /*ngDialog.open({
+            template: '<div class="loader prev"></div>',
+            plain: true,
+            overlay: false,
+            id: 'settingsDialog',
+            showClose: false,
+            width: '80%',
+            height: '80%',
+            closeByDocument: false
+        });*/
 
         var username = document.getElementById("username").value;
         var pass = document.getElementById("password").value;
@@ -31,11 +41,15 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
         var apellidos = document.getElementById("apellidos").value;
 
         if(checkUser(username)){
+            console.log(username);
+            ngDialog.close();
             alert("Este nombre de usuario esta en uso");
         }else if(!checkPassword(pass, repass)){
             alert("La contraseña tiene que tener mas de 6 caracteres y coincidir");
+            ngDialog.close();
         }else if(checkSomethingNull()){
             alert("Rellena todos los campos");
+            ngDialog.close();
         }else{
             var token = JSON.parse(localStorage.getItem("deviceId")).userId;
             var user = {"username": username, "pass": pass, "nDogs": num, "token":token, "nombre":nombre, "apellidos":apellidos};
@@ -85,7 +99,34 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
                         console.log(response);
                     });
             }
-            $state.go('profile');
+
+            var img = document.createElement('img');
+            img.onload = function(){
+                var c = document.createElement("canvas");
+                c.width = img.width;
+                c.height = img.height;
+                var ctx = c.getContext("2d");
+                ctx.drawImage(img, 0, 0, img.width, img.height);
+                var dataUrl = c.toDataURL();
+                var posComa = dataUrl.indexOf(',');
+                dataUrl = dataUrl.substring(posComa + 1);
+                $scope.dataUrl = dataUrl;
+                console.log("fin");
+
+                var data = {"img":$scope.dataUrl, "username":username, "animal":""};
+                $http.post("https://www.institutmarianao.cat/woody/uploadFile.php",data).then(
+                    function(response){
+                        //console.log(response);
+                        ngDialog.close();
+                        $state.go('profile');
+                    },function(response){
+                        console.log(response);
+                        alert("Algo a salido mal");
+                    });
+            };
+            img.src = "http://www.gama-ksa.com/wp-content/uploads/2014/06/funny-default-facebook-pictures.jpg";
+
+
         }
     };
 
@@ -182,12 +223,12 @@ app.controller('registerUserController',  ['$scope', '$rootScope', '$state', '$h
             console.log(response);
             $scope.result = response.data;
 
-
         }, function (response) {
             console.log(response.data);
             console.log(response);
         });
-        if($scope.result == "failed"){
+        console.log($scope.result);
+        if($scope.result == "failed" || $scope.result == undefined){
             return false;
         }else{
             return true;

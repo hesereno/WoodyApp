@@ -69,32 +69,36 @@ app.controller('profileController', ['$scope', '$http', '$state', 'ngDialog', fu
         $http.post("https://www.institutmarianao.cat/woody/getFriends.php",data).then(
             function(response){
                 console.log(response.data);
-                var friends = response.data;
-                for(var i = 0; i < friends.length; i++){
-                    console.log(friends[i].user2);
-                    var data = {'userId' : friends[i].user2};
-                    $http.post("https://www.institutmarianao.cat/woody/getUserToken.php",data).then(
-                        function(response){
-                            console.log(response.data);
-                            var userToken = response.data.token;
-                            var notificationObj = {
-                                contents: {en: $scope.username +": Socorro se ha perdido "+ dogName},
-                                include_player_ids: [userToken],
-                                data: {"notificationState": "solicitudAmistad"}
-                            };
-                            window.plugins.OneSignal.postNotification(notificationObj,
-                                function(successResponse) {
-                                    console.log("Notification Post Success:", successResponse);
-                                    alert("Tus amigos han sido avisados");
-                                },
-                                function (failedResponse) {
-                                    console.log("Notification Post Failed: ", failedResponse);
-                                    alert("Vaya! ningun amigo tuyo esta conectado");
-                                }
-                            );
-                        },function(response){
-                            console.log(response.data);
-                        });
+                if(response.data.length == 0){
+                    alert("No tienes amigos!");
+                }else{
+                    var friends = response.data;
+                    for(var i = 0; i < friends.length; i++){
+                        console.log(friends[i].user2);
+                        var data = {'userId' : friends[i].user2};
+                        $http.post("https://www.institutmarianao.cat/woody/getUserToken.php",data).then(
+                            function(response){
+                                console.log(response.data);
+                                var userToken = response.data.token;
+                                var notificationObj = {
+                                    contents: {en: $scope.username +": Socorro se ha perdido "+ dogName},
+                                    include_player_ids: [userToken],
+                                    data: {"notificationState": "solicitudAmistad"}
+                                };
+                                window.plugins.OneSignal.postNotification(notificationObj,
+                                    function(successResponse) {
+                                        console.log("Notification Post Success:", successResponse);
+                                        alert("Tus amigos han sido avisados");
+                                    },
+                                    function (failedResponse) {
+                                        console.log("Notification Post Failed: ", failedResponse);
+                                        alert("Vaya! ningun amigo tuyo esta conectado");
+                                    }
+                                );
+                            },function(response){
+                                console.log(response.data);
+                            });
+                    }
                 }
             },function(response){
                 console.log(response.data);

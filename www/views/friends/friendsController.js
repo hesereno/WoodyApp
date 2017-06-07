@@ -1,6 +1,6 @@
 var app = angular.module('woodyApp.friends', []);
 
-app.controller('friendsController',  ['$scope', '$state','$http', function($scope, $state,$http){
+app.controller('friendsController',  ['$scope', '$state','$http', 'ngDialog', function($scope, $state, $http, ngDialog){
 
     $scope.buscando = false;
     $scope.isMyFriend = false;
@@ -70,6 +70,16 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
     };
 
     $scope.showFriendsList = function(){
+        ngDialog.open({
+            template: '<div class="loader prev"></div>',
+            plain: true,
+            overlay: false,
+            id: 'settingsDialog',
+            showClose: false,
+            width: '80%',
+            height: '80%',
+            closeByDocument: false
+        });
         var userData = localStorage.getItem("usr");
         userData = userData.substring(0, userData.indexOf(','));
         console.log(userData);
@@ -78,8 +88,11 @@ app.controller('friendsController',  ['$scope', '$state','$http', function($scop
             function(response){
                 console.log(response.data);
                 $scope.friends = response.data;
+                ngDialog.close();
             },function(response){
                 console.log(response.data);
+                ngDialog.close();
+                alert("error de carga");
             });
     };
 
